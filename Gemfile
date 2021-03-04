@@ -21,6 +21,8 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
+  gem 'pry-awesome_print', '~> 9.6.0'  # Combines 'pry' and 'awesome_print' without hacking pryrc
+  gem 'pry-rails',         '~> 0.3.0'  # Default rails console to pry
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

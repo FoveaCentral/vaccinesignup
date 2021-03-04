@@ -1,7 +1,6 @@
 class CreateLocations < ActiveRecord::Migration[6.1]
   def change
     create_table :locations do |t|
-      t.string :id
       t.string :x_parent
       t.integer :num_children
       t.boolean :inactive

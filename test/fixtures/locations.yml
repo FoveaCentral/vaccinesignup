@@ -1,0 +1,55 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  x_parent: MyString
+  num_children: 1
+  inactive: false
+  organization: MyString
+  name: MyString
+  addr1: MyString
+  addr2: MyString
+  vaccines: MyString
+  logo: MyString
+  map_zoom: MyString
+  notes: MyString
+  notes_spn: MyString
+  alt: MyString
+  alt_spn: MyString
+  date: MyString
+  time: MyString
+  link: MyString
+  second_dose: MyString
+  full: MyString
+  comments: MyString
+  comments_spn: MyString
+  times: MyString
+  clinic_format: MyString
+  system: MyString
+
+two:
+  id: MyString
+  x_parent: MyString
+  num_children: 1
+  inactive: false
+  organization: MyString
+  name: MyString
+  addr1: MyString
+  addr2: MyString
+  vaccines: MyString
+  logo: MyString
+  map_zoom: MyString
+  notes: MyString
+  notes_spn: MyString
+  alt: MyString
+  alt_spn: MyString
+  date: MyString
+  time: MyString
+  link: MyString
+  second_dose: MyString
+  full: MyString
+  comments: MyString
+  comments_spn: MyString
+  times: MyString
+  clinic_format: MyString
+  system: MyString

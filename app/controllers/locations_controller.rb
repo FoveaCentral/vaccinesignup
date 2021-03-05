@@ -7,15 +7,21 @@ class LocationsController < ApplicationController
   LA_URL = 'http://publichealth.lacounty.gov/acd/ncorona2019/js/pod-data.js'
 
   def sync
-    response = Net::HTTP.get(URI(LA_URL)).gsub('var unfiltered = ', '')
-    location_array = JSON.parse(response)
-    location_array.each do |location_hash|
-      id = location_hash.delete('id')
-      location = Location.where('id = ? OR addr1 = ?', id,
-                                location_hash['addr1']).limit(1).find_each
-                         .first || Location.new
-      location.update(location_hash)
+    new = 0
+    location_a = la_locations
+    location_a.each do |location_h|
+      id = location_h.delete('id')
+      location = Location.find_by_best_key(id, location_h['addr1']) || Location.new
+      new += 1 if location.new_record?
+      location.update(location_h)
     end
-    render plain: "Synced #{location_array.size} locations."
+    render plain: ["Parsed #{location_a.size} locations.", "Created #{new} locations."].join("\n")
+  end
+
+  private
+
+  def la_locations
+    response = Net::HTTP.get(URI(LA_URL)).gsub('var unfiltered = ', '')
+    JSON.parse(response)
   end
 end

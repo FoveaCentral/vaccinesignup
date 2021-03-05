@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Represents a vaccine location.
 class Location < ApplicationRecord
   alias_attribute :xParent, :x_parent
   alias_attribute :NumChildren, :num_children

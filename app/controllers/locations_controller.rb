@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
       id = location_hash.delete('id')
       location = Location.where('id = ? OR addr1 = ?', id,
                                 location_hash['addr1']).limit(1).find_each
-                                .first || Location.new
+                         .first || Location.new
       location.update(location_hash)
     end
     render plain: "Synced #{location_array.size} locations."

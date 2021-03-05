@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for syncing Covid-19 vaccine Locations with LA County data set.
 class LocationsController < ApplicationController
   require 'net/http'
 

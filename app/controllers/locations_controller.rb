@@ -8,9 +8,9 @@ class LocationsController < ApplicationController
     location_array = JSON.parse(response)
     location_array.each do |location_hash|
       id = location_hash.delete('id')
-      location = Location.find_by(id: id) ||
-        Location.find_by(addr1: location_hash['addr1']) ||
-        Location.new
+      location = Location.where('id = ? OR addr1 = ?', id,
+                                location_hash['addr1']).limit(1).find_each
+                                .first || Location.new
       location.update(location_hash)
     end
     render plain: "Synced #{location_array.size} locations."

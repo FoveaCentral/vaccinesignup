@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Location < ApplicationRecord
   alias_attribute :xParent, :x_parent
   alias_attribute :NumChildren, :num_children

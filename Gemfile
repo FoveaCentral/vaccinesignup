@@ -15,11 +15,13 @@ group :development do
 end
 
 group :development, :test do
+  gem 'coveralls', require: false
   gem 'pry-awesome_print', '~> 9.6.0'
   gem 'pry-rails',         '~> 0.3.0'
 end
 
 group :test do
+  gem 'rspec-rails', '~> 4'
   gem 'rubocop', '~> 1.11'
 end
 

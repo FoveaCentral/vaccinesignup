@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-# Controller for syncing Covid-19 vaccine Locations with LA County data set.
+# Controller for managing Covid-19 vaccine Locations.
 class LocationsController < ApplicationController
   require 'net/http'
 
   LA_URL = 'http://publichealth.lacounty.gov/acd/ncorona2019/js/pod-data.js'
 
+  # Syncs vaccine Locations with LA County's data set.
   def sync
     new = 0
     location_a = la_locations

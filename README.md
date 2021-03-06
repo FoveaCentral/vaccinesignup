@@ -1,24 +1,9 @@
-# README
+# Vaccine Notifier
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Maintainability](https://api.codeclimate.com/v1/badges/dad2d32da2d576e4a99a/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccine-notifier/maintainability)
 
-Things you may want to cover:
+This app notifies users who tweet their zip codes to @vaccinesignup about available vaccine appointments in their area.
 
-* Ruby version
+## Usage
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Visit `/locations/sync` to sync Locations with LA County's data set.

@@ -9,6 +9,7 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
+gem 'twitter', '~> 7.0'
 
 group :development do
   gem 'listen', '~> 3.3'

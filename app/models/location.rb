@@ -12,6 +12,6 @@ class Location < ApplicationRecord
   alias_attribute :clinicFormat, :clinic_format
 
   def self.find_by_best_key(id, address1)
-    Location.where('id = ? OR addr1 = ?', id, address1).limit(1).find_each.first
+    Location.where('id = ? OR addr1 = ?', id.to_i, address1).limit(1).find_each.first
   end
 end

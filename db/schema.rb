@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_03_11_170923) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "locations", force: :cascade do |t|
     t.string "x_parent"
     t.integer "num_children"
@@ -43,18 +46,17 @@ ActiveRecord::Schema.define(version: 2021_03_11_170923) do
   end
 
   create_table "processed_direct_messages", force: :cascade do |t|
-    t.integer "direct_message_id"
+    t.bigint "direct_message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["direct_message_id"], name: "index_processed_direct_messages_on_direct_message_id"
   end
 
   create_table "zip_subscriptions", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_zip_subscriptions_on_user_id"
     t.index ["zip"], name: "index_zip_subscriptions_on_zip"
   end
 

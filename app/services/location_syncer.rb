@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 
 # Syncs vaccine Locations with LA County's data set.

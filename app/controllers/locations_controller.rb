@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   # Syncs vaccine Locations with LA County's data set.
   def sync
     results = LocationSyncer.call
-    render plain: ["Parsed #{results[:locations]} locations.", "Created #{results[:new_locations]} locations."].join("\n")
+    render plain: ["Parsed #{results[:locations]} locations.",
+                   "Created #{results[:new_locations]} locations."].join("\n")
   end
 end

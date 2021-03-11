@@ -1,8 +1,7 @@
+# frozen_string_literal: true
+
 # Notifies users about available appointments in the zips they follow.
 class Notifier < ApplicationService
-  def initialize
-  end
-
   def call
     clinics = 0
     users = 0
@@ -18,6 +17,6 @@ class Notifier < ApplicationService
       TWITTER_CLIENT.create_direct_message(zip_sub.user_id, message * "\n")
       users += 1
     end
-    {clinics: clinics, users: users}
+    { clinics: clinics, users: users }
   end
 end

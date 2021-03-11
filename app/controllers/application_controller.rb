@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Superclass for all controllers.
 class ApplicationController < ActionController::Base
   # Parse direct messages for zip codes.
   def parse_direct_messages
@@ -7,12 +8,12 @@ class ApplicationController < ActionController::Base
     subscribed = 0
     TWITTER_CLIENT.direct_messages_received.each do |dm|
       next if ProcessedDirectMessage.exists?(direct_message_id: dm[:id])
-      if !(dm[:text] =~ /[0-9]{5}/).nil?
-        ZipSubscription.create(user_id: dm[:sender_id], zip: dm[:text])
-        subscribed += 1
+
+      if !!(dm[:text] =~ /^[0-9]{5}$/)
+        sub = ZipSubscription.create_or_find_by(user_id: dm[:sender_id], zip: dm[:text])
+        subscribed += 1 if sub.persisted?
       elsif dm[:text].downcase == 'stop'
-        ZipSubscription.delete(user_id: dm[:sender_id])
-        stopped += 1
+        stopped += ZipSubscription.where(user_id: dm[:sender_id]).delete_all
       end
       ProcessedDirectMessage.create(direct_message_id: dm[:id])
     end

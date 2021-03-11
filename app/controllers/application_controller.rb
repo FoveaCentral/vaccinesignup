@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def parse_direct_messages
     i = 0
     TWITTER_CLIENT.direct_messages_received.each do |dm|
-      next unless !!(dm[:text] =~ /[0-9]{5}/) && !ProcessedDirectMessage.exists?(dm[:id])
+      next unless !(dm[:text] =~ /[0-9]{5}/).nil? && !ProcessedDirectMessage.exists?(dm[:id])
 
       ZipSubscription.create(user_id: dm[:sender_id], zip: dm[:text])
       ProcessedDirectMessage.create(direct_message_id: dm[:id])

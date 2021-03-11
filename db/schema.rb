@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 2021_03_11_170923) do
     t.index ["addr1"], name: "index_locations_on_addr1"
   end
 
-  create_table "processed_direct_messages", force: :cascade do |t|
+  create_table "read_direct_messages", force: :cascade do |t|
     t.bigint "direct_message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["direct_message_id"], name: "index_processed_direct_messages_on_direct_message_id"
+    t.index ["direct_message_id"], name: "index_read_direct_messages_on_direct_message_id"
   end
 
   create_table "user_zips", force: :cascade do |t|

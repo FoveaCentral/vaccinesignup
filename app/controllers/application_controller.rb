@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def parse_direct_messages
     stopped = 0
     subscribed = 0
-    TWITTER_CLIENT.direct_messages_received.each do |dm|
+    TWITTER_CLIENT.direct_messages_received.reverse.each do |dm|
       next if ProcessedDirectMessage.exists?(direct_message_id: dm[:id])
 
       if !!(dm[:text] =~ /^[0-9]{5}$/)

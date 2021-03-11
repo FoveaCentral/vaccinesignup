@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def parse_direct_messages
     i = 0
     TWITTER_CLIENT.direct_messages_received.each do |dm|
-      next unless !!(dm[:text] =~ /[0-9]{5}/) && !ProcessedDirectMessage.exist?(dm[:id])
+      next unless !!(dm[:text] =~ /[0-9]{5}/) && !ProcessedDirectMessage.exists?(dm[:id])
 
       ZipSubscription.create(user_id: dm[:sender_id], zip: dm[:text])
       ProcessedDirectMessage.create(direct_message_id: dm[:id])
@@ -20,9 +20,10 @@ class ApplicationController < ActionController::Base
     i = 0
     ZipSubscription.find_each do |zip_sub|
       clinics = Location.where('addr2 LIKE ?', "%#{zip_sub.zip}%")
-      message = []
+      message = ['Appointments now available at:', nil]
       clinics.each do |clinic|
-        message << "Appointments now available at #{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and signup at #{clinic.link}"
+        message << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
+        message << nil
         appointments += 1
       end
 

@@ -1,0 +1,2 @@
+class ZipSubscription < ApplicationRecord
+end

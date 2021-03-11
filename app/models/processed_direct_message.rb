@@ -1,0 +1,2 @@
+class ProcessedDirectMessage < ApplicationRecord
+end

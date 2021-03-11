@@ -1,7 +1,7 @@
 class CreateProcessedDirectMessages < ActiveRecord::Migration[6.1]
   def change
     create_table :processed_direct_messages do |t|
-      t.integer :direct_message_id
+      t.integer :direct_message_id, index: true, unique: true
 
       t.timestamps
     end

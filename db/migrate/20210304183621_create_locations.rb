@@ -8,7 +8,7 @@ class CreateLocations < ActiveRecord::Migration[6.1]
       t.boolean :inactive
       t.string :organization
       t.string :name
-      t.string :addr1
+      t.string :addr1, index: true
       t.string :addr2
       t.string :vaccines
       t.string :logo

@@ -22,20 +22,7 @@ class ApplicationController < ActionController::Base
 
   # Notify users of appointments in their zip code.
   def notify_users
-    appointments = 0
-    users = 0
-    ZipSubscription.find_each do |zip_sub|
-      clinics = Location.where('addr2 LIKE ?', "%#{zip_sub.zip}%")
-      message = ['Appointments now available at:', nil]
-      clinics.each do |clinic|
-        message << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
-        message << nil
-        appointments += 1
-      end
-
-      TWITTER_CLIENT.create_direct_message(zip_sub.user_id, message * "\n")
-      users += 1
-    end
-    render plain: "Notified #{users} users about #{appointments} appointments."
+    results = Notifier.call
+    render plain: "Notified #{results[:users]} users about #{results[:clinics]} appointments."
   end
 end

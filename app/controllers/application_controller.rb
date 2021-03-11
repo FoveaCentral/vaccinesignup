@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
       next if ProcessedDirectMessage.exists?(direct_message_id: dm[:id])
 
       if !!(dm[:text] =~ /^[0-9]{5}$/)
-        sub = ZipSubscription.create_or_find_by(user_id: dm[:sender_id], zip: dm[:text])
+        sub = UserZip.create_or_find_by(user_id: dm[:sender_id], zip: dm[:text])
         subscribed += 1 if sub.persisted?
       elsif dm[:text].downcase == 'stop'
-        stopped += ZipSubscription.where(user_id: dm[:sender_id]).delete_all
+        stopped += UserZip.where(user_id: dm[:sender_id]).delete_all
       end
       ProcessedDirectMessage.create(direct_message_id: dm[:id])
     end

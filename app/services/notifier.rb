@@ -6,7 +6,7 @@ class Notifier < ApplicationService
   def call
     clinics = 0
     users = 0
-    ZipSubscription.find_each do |zip_sub|
+    UserZip.find_each do |zip_sub|
       locations = Location.where('addr2 LIKE ?', "%#{zip_sub.zip}%")
       message = ['Appointments now available at:', nil]
       locations.each do |clinic|

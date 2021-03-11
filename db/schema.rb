@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 2021_03_11_170923) do
     t.index ["direct_message_id"], name: "index_processed_direct_messages_on_direct_message_id"
   end
 
-  create_table "zip_subscriptions", force: :cascade do |t|
+  create_table "user_zips", force: :cascade do |t|
     t.bigint "user_id"
     t.string "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["zip"], name: "index_zip_subscriptions_on_zip"
+    t.index ["zip"], name: "index_user_zips_on_zip"
   end
 
 end

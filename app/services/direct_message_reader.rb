@@ -2,10 +2,15 @@
 
 # Reads direct messages for zips that users want to follow.
 class DirectMessageReader < ApplicationService
+  def initialize(dms = TWITTER_CLIENT.direct_messages_received.reverse)
+    super()
+    @direct_messages = dms
+  end
+
   def call
     stopped = 0
     subscribed = 0
-    TWITTER_CLIENT.direct_messages_received.reverse.each do |dm|
+    @direct_messages.each do |dm|
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
       h = parse(direct_message: dm, stopped: stopped, subscribed: subscribed)

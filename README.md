@@ -1,5 +1,6 @@
 # Vaccine Notifier
 
+[![test](https://github.com/ivanoblomov/vaccine-notifier/actions/workflows/test.yml/badge.svg)](https://github.com/ivanoblomov/vaccine-notifier/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dad2d32da2d576e4a99a/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccine-notifier/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccine-notifier/badge.svg?branch=main)](https://coveralls.io/github/ivanoblomov/vaccine-notifier?branch=main)
 

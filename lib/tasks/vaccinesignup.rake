@@ -10,7 +10,7 @@ namespace :vaccinesignup do
   "''
   end
 
-  desc 'Read direct messages for zip codes.'
+  desc 'Read direct messages for zip codes that users follow.'
   task read_dms: :environment do
     results = DirectMessageReader.call
     puts "Users DMd #{results[:subscribed]} new zips and stopped #{results[:stopped]} zips."

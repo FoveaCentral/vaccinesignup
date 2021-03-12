@@ -24,6 +24,7 @@ end
 group :test do
   gem 'rspec-rails', '~> 4'
   gem 'rubocop', '~> 1.11'
+  gem 'sqlite3', '~> 1.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

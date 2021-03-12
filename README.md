@@ -8,6 +8,26 @@ This app notifies users who tweet their zip codes to [@vaccinesignup](https://tw
 
 ## Usage
 
+### Users
+
+1. Follow [@vaccinesignup](https://twitter.com/vaccinesignup/).
+
+2. DM [@vaccinesignup](https://twitter.com/vaccinesignup/) a zip code only:
+```
+90210
+```
+
+3. The bot will DM you available appointments in that zip:
+```
+Appointments now available at:
+
+Rite Aid Pharmacy #5461 (463 North Bedford Drive, Beverly Hills, CA 90210). Check eligibility and sign-up at https://riteaid.com/pharmacy/covid-qualifier…
+
+Rite Aid Pharmacy #5462 (300 North Canon Drive, Beverly Hills, CA 90210). Check eligibility and sign-up at https://riteaid.com/pharmacy/covid-qualifier…
+```
+
+### Developers
+
 1. To sync vaccination Locations with LA County's data:
 ```
 rake vaccinesignup:sync_locations

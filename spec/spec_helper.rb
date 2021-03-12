@@ -4,6 +4,12 @@ require 'coveralls'
 Coveralls.wear!
 require 'rubygems'
 require 'bundler'
+
+# rails
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e

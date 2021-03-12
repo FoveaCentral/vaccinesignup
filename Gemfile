@@ -18,7 +18,7 @@ group :development, :production do
 end
 
 group :development, :test do
-  gem 'coveralls', require: false
+  gem 'coveralls_reborn', require: false
   gem 'pry-awesome_print', '~> 9.6.0'
   gem 'pry-rails',         '~> 0.3.0'
 end

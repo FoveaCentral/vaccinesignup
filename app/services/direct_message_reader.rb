@@ -25,11 +25,15 @@ class DirectMessageReader < ApplicationService
   def parse(direct_message:, stopped:, subscribed:)
     if !(direct_message.text =~ /^[0-9]{5}$/).nil?
       sub = UserZip.create_or_find_by(user_id: direct_message.sender_id, zip: direct_message.text)
-      subscribed += 1 if sub.persisted?
+      if sub.persisted?
+        subscribed += 1
+        Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}"
+      end
     elsif direct_message.text.downcase == 'stop'
       stopped += UserZip.where(user_id: direct_message.sender_id).delete_all
+      Rails.logger.info "#{direct_message.sender_id} stopped subscribing"
     end
     ReadDirectMessage.create(direct_message_id: dm.id)
-    { subscribed: subscribed, stopped: stopped }
+    { stopped: stopped, subscribed: subscribed }
   end
 end

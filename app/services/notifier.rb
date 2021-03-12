@@ -19,6 +19,7 @@ class Notifier < ApplicationService
       message << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
       message << nil
       clinics += 1
+      Rails.logger.info "Found #{clinics} clinics for #{user_zip.zip}"
     end
   end
 

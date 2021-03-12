@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 namespace :vaccinesignup do
   desc 'Notify users about new appointments in their zip code.'
   task notify_users: :environment do
@@ -30,3 +31,4 @@ namespace :vaccinesignup do
   "''
   end
 end
+# rubocop:enable Metrics/BlockLength

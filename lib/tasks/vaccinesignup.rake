@@ -23,11 +23,13 @@ namespace :vaccinesignup do
   desc 'Sync Locations with LA County data.'
   task sync_locations: :environment do
     results = LocationSyncer.call
-    puts "Parsed #{results[:locations]} locations.",
-         "Created #{results[:new_locations]} locations."
+    puts "Parsed #{results[:total]} locations.",
+         "Created #{results[:new]} locations.",
+         "Updated #{results[:updated]} locations."
     Rails.logger.info ''"
-  Parsed #{results[:locations]} locations.
-  Created #{results[:new_locations]} locations.
+  Parsed #{results[:total]} locations.
+  Created #{results[:new]} locations.
+  Updated #{results[:updated]} locations.
   "''
   end
 end

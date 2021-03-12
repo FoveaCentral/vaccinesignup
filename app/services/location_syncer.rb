@@ -13,13 +13,19 @@ class LocationSyncer < ApplicationService
 
   def call
     new = 0
-    locations = @locations.each do |location_h|
+    updated = 0
+    total = @locations.each do |location_h|
       id = location_h.delete('id')
-      location = Location.find_by_best_key(id, location_h['addr1']) || Location.new
-      new += 1 if location.new_record?
-      location.update(location_h)
+      location = Location.find_by_best_key(id, location_h['addr1'])
+      if location.nil?
+        location = Location.new
+        new += 1
+      end
+      location.attributes = location_h
+      updated += 1 if location.changed? && location.persisted?
+      location.save
     end.size
-    { locations: locations, new_locations: new }
+    { total: total, new: new, updated: updated }
   end
 
   private

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "",
+    "xParent": 8,
+    "NumChildren": 0,
+    "inactive": "",
+    "organization": "Reported",
+    "name": "Rite Aid Pharmacy #5462",
+    "addr1": "300 North Canon Drive",
+    "addr2": "Beverly Hills, CA 90210",
+    "vaccines": "m",
+    "logo": "",
+    "mapZoom": "https://www.google.com/maps/d/embed?mid=1AdIIUb669F7mV6J5A6McJo7eC5X67dfG&ll=34.0718324%2C-118.4021034&z=16",
+    "notes": "",
+    "notesSpn": "",
+    "alt": "",
+    "altSpn": "",
+    "date": "",
+    "time": "",
+    "link": "https://www.riteaid.com/pharmacy/covid-qualifier",
+    "secondDose": "",
+    "full": "",
+    "comments": "",
+    "commentsSpn": "",
+    "times": "",
+    "clinicFormat": 1,
+    "system": ""
+  }
+]

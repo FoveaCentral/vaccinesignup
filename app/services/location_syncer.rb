@@ -16,7 +16,7 @@ class LocationSyncer < ApplicationService
     updated = 0
     total = @locations.each do |location_h|
       location = Location.find_by_best_key(location_h.delete('id'), location_h['addr1'])
-      location = Location.new && new += 1 if location.nil?
+      location = (new += 1) && Location.new if location.nil?
       location.attributes = location_h
       updated += 1 if location.changed? && location.persisted?
       location.save

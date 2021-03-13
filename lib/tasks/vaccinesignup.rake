@@ -32,5 +32,15 @@ namespace :vaccinesignup do
   Updated #{results[:updated]} locations.
   "''
   end
+
+  desc 'Sync Locations, read DMs, and notify users.'
+  task :sync_read_notify do
+    puts 'Syncing Locations...'
+    Rake::Task['vaccinesignup:sync_locations'].invoke
+    puts nil, 'Reading DMs...'
+    Rake::Task['vaccinesignup:read_dms'].invoke
+    puts nil, 'Notifying users...'
+    Rake::Task['vaccinesignup:notify_users'].invoke
+  end
 end
 # rubocop:enable Metrics/BlockLength

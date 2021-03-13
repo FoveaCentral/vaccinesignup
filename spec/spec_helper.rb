@@ -4,6 +4,7 @@ require 'coveralls'
 Coveralls.wear!
 require 'rubygems'
 require 'bundler'
+require File.expand_path('support/factory_bot', __dir__)
 
 # rails
 ENV['RAILS_ENV'] ||= 'test'

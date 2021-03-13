@@ -24,6 +24,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner-active_record', '~> 2.0'
+  gem 'factory_bot', '~> 6.1'
   gem 'rspec-rails', '~> 4'
   gem 'rubocop', '~> 1.11'
   gem 'sqlite3', '~> 1.4'

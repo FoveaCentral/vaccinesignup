@@ -14,8 +14,8 @@ class DirectMessageReader < ApplicationService
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
       h = parse(direct_message: dm, stopped: stopped, subscribed: subscribed)
-      stopped = h.stopped
-      subscribed = h.subscribed
+      stopped = h[:stopped]
+      subscribed = h[:subscribed]
     end
     { stopped: stopped, subscribed: subscribed }
   end
@@ -33,7 +33,7 @@ class DirectMessageReader < ApplicationService
       stopped += UserZip.where(user_id: direct_message.sender_id).delete_all
       Rails.logger.info "#{direct_message.sender_id} stopped subscribing"
     end
-    ReadDirectMessage.create(direct_message_id: dm.id)
+    ReadDirectMessage.create(direct_message_id: direct_message.id)
     { stopped: stopped, subscribed: subscribed }
   end
 end

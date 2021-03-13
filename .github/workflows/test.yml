@@ -21,6 +21,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
     - name: Install dependencies
       run: bundle install
+    - name: Prepare db
       run: bundle exec rake db:prepare RAILS_ENV=test
     - name: Run tests
       env:

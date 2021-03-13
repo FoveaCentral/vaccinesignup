@@ -21,6 +21,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
     - name: Install dependencies
       run: bundle install
+      run: bundle exec rake db:prepare RAILS_ENV=test
     - name: Run tests
       env:
         GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}

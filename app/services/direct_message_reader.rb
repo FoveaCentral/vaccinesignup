@@ -13,7 +13,7 @@ class DirectMessageReader < ApplicationService
     @direct_messages.each do |dm|
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
-      h = parse(direct_message: dm, stopped: stopped, subscribed: subscribed)
+      h = read(direct_message: dm, stopped: stopped, subscribed: subscribed)
       stopped = h[:stopped]
       subscribed = h[:subscribed]
     end
@@ -22,13 +22,15 @@ class DirectMessageReader < ApplicationService
 
   private
 
-  def parse(direct_message:, stopped:, subscribed:)
-    if !(direct_message.text =~ /^[0-9]{5}$/).nil?
-      sub = UserZip.create_or_find_by(user_id: direct_message.sender_id, zip: direct_message.text)
-      if sub.persisted?
-        subscribed += 1
-        Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}"
-      end
+  def dm_is_a_zip_and_user_zip_saved?(direct_message)
+    !(direct_message.text =~ /^[0-9]{5}$/).nil? && UserZip.create_or_find_by(user_id: direct_message.sender_id,
+                                                                             zip: direct_message.text).persisted?
+  end
+
+  def read(direct_message:, stopped:, subscribed:)
+    if dm_is_a_zip_and_user_zip_saved?(direct_message)
+      subscribed += 1
+      Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}"
     elsif direct_message.text.downcase == 'stop'
       stopped += UserZip.where(user_id: direct_message.sender_id).delete_all
       Rails.logger.info "#{direct_message.sender_id} stopped subscribing"

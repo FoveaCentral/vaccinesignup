@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
+# rubocop:disable Metrics/BlockLength
 describe DirectMessageReader do
   describe '#call' do
     let(:results) { subject.call }
@@ -36,3 +37,4 @@ describe DirectMessageReader do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

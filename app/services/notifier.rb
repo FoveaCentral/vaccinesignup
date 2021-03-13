@@ -19,15 +19,17 @@ class Notifier < ApplicationService
       message << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
       message << nil
       clinics += 1
-      Rails.logger.info "Found #{clinics} clinics for #{user_zip.zip}"
     end
+    clinics
   end
 
   def parse_user_zips(clinics:, users:)
     @user_zips.each do |user_zip|
-      parse_matching_locations(clinics: clinics, message: ['Appointments now available at:', nil], user_zip: user_zip)
+      message = ['Appointments now available at:', nil]
+      clinics = parse_matching_locations(clinics: clinics, message: message, user_zip: user_zip)
       TWITTER_CLIENT.create_direct_message(user_zip.user_id, message * "\n")
       users += 1
+      Rails.logger.info "Found #{clinics} clinics for #{user_zip.zip}"
     end
     { clinics: clinics, users: users }
   end

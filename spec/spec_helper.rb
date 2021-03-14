@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'coveralls'
-Coveralls.wear!
+require 'simplecov'
 require 'rubygems'
 require 'bundler'
 require File.expand_path('support/factory_bot', __dir__)

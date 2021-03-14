@@ -4,9 +4,7 @@ require "#{File.dirname(__FILE__)}/../spec_helper"
 # rubocop:disable Metrics/BlockLength
 describe DirectMessageReader do
   describe '#call' do
-    let(:results) { subject.call }
-
-    subject { DirectMessageReader.new(messages) }
+    subject { DirectMessageReader.call(messages) }
 
     context 'when a user subscribes to a zip' do
       let(:messages) { [subscribe_message] }
@@ -19,7 +17,7 @@ describe DirectMessageReader do
         msg
       end
 
-      it { expect(results).to eq({ stopped: 0, subscribed: 1 }) }
+      it { should eq({ stopped: 0, subscribed: 1 }) }
 
       context 'when a user unsubscribes' do
         let(:messages) { [subscribe_message, unsubscribe_message] }
@@ -32,7 +30,7 @@ describe DirectMessageReader do
           msg
         end
 
-        it { expect(results).to eq({ stopped: 1, subscribed: 1 }) }
+        it { should eq({ stopped: 1, subscribed: 1 }) }
       end
     end
   end

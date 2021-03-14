@@ -3,3 +3,4 @@ AllCops:
     - 'bin/bundle'
     - 'db/migrate/*'
     - 'db/schema.rb'
+  NewCops: enable

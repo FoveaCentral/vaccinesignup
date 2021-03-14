@@ -6,9 +6,8 @@ require 'net/http'
 class Bot < ApplicationService
   def call
     sync_results = LocationSyncer.call
-    if (sync_results[:new]).positive? || (sync_results[:updated]).positive?
-      read_results = DirectMessageReader.call
-      results = Notifier.call if (read_results[:subscribed]).positive?
-    end
+    return unless (sync_results[:new]).positive? || (sync_results[:updated]).positive?
+
+    Notifier.call if DirectMessageReader.call[:subscribed].positive?
   end
 end

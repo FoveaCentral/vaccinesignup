@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :vaccinesignup do
-  desc 'Read DMs and, if there are subscriptions, notify users.'
+  desc 'Read DMs and, if there are subscribed zip codes, notify users.'
   task :read_and_notify do
     results = NotifyBot.call
     puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."

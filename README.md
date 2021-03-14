@@ -28,18 +28,16 @@ Rite Aid Pharmacy #5462 (300 North Canon Drive, Beverly Hills, CA 90210). Check 
 
 ### Developers
 
-1. To sync vaccination Locations with LA County's data:
+1. To sync Locations and, if there are changes, notify users:
 ```
-rake vaccinesignup:sync_locations
+rake vaccinesignup:sync_and_notify
 ```
-2. To read direct messages for zip codes that users follow:
+2. To read DMs and, if there are subscribed zip codes, notify users:
 ```
-rake vaccinesignup:read_dms
+rake vaccinesignup:read_and_notify
 ```
-3. To notify users about new appointments in their zip code:
-```
-rake vaccinesignup:notify_users
-```
+
+When configuring bots for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
 ## Copyright
 

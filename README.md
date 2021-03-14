@@ -13,18 +13,12 @@ This app notifies users who tweet their zip codes to [@vaccinesignup](https://tw
 1. Follow [@vaccinesignup](https://twitter.com/vaccinesignup/).
 
 2. DM [@vaccinesignup](https://twitter.com/vaccinesignup/) a zip code only:
-```
-90210
-```
+
+   ![zip](https://user-images.githubusercontent.com/113809/111058905-b2b68e00-845f-11eb-99d1-3aa0b4adcaad.png)
 
 3. The bot will DM you available appointments in that zip:
-```
-Appointments now available at:
 
-Rite Aid Pharmacy #5461 (463 North Bedford Drive, Beverly Hills, CA 90210). Check eligibility and sign-up at https://riteaid.com/pharmacy/covid-qualifier…
-
-Rite Aid Pharmacy #5462 (300 North Canon Drive, Beverly Hills, CA 90210). Check eligibility and sign-up at https://riteaid.com/pharmacy/covid-qualifier…
-```
+   ![appointments](https://user-images.githubusercontent.com/113809/111059071-bc8cc100-8460-11eb-9148-74998844b8e9.png)
 
 ### Developers
 

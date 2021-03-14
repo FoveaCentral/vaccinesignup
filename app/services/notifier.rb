@@ -2,35 +2,47 @@
 
 # Notifies users about available appointments in the zips they follow.
 class Notifier < ApplicationService
+  DM_HEADER = ['Appointments now available at:', nil].freeze
+
   def initialize(user_zips = UserZip.find_each)
     super()
     @user_zips = user_zips
   end
 
   def call
-    results = parse_user_zips(clinics: 0, users: 0)
+    results = parse_user_zips
     { clinics: results[:clinics], users: results[:users] }
   end
 
   private
 
-  def parse_matching_locations(clinics:, message:, user_zip:)
-    Location.where('addr2 LIKE ?', "%#{user_zip.zip}%").each do |clinic|
-      message << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
-      message << nil
-      clinics += 1
-    end
-    clinics
+  def dm_results(results)
+    TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
+    results[:users] += 1
+    Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}"
   end
 
-  def parse_user_zips(clinics:, users:)
-    @user_zips.each do |user_zip|
-      message = ['Appointments now available at:', nil]
-      clinics = parse_matching_locations(clinics: clinics, message: message, user_zip: user_zip)
-      TWITTER_CLIENT.create_direct_message(user_zip.user_id, message * "\n")
-      users += 1
-      Rails.logger.info "Found #{clinics} clinics for #{user_zip.zip}"
+  def parse_matching_locations(results)
+    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").each do |clinic|
+      results[:message] ||= DM_HEADER.dup
+      results[:message] <<
+        "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
+      results[:message] << nil
+      results[:clinics] += 1
     end
-    { clinics: clinics, users: users }
+    results
+  end
+
+  def parse_user_zips
+    results = { clinics: 0, users: 0 }
+    @user_zips.each do |user_zip|
+      results[:message] = nil
+      results[:user_zip] = user_zip
+      results = parse_matching_locations(results)
+      next unless results[:message]
+
+      dm_results(results)
+    end
+    { clinics: results[:clinics], users: results[:users] }
   end
 end

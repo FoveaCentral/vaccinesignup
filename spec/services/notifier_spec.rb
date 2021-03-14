@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
+# rubocop:disable Metrics/BlockLength
 describe Notifier do
   describe '#call' do
     subject { Notifier.call(user_zips) }
@@ -40,3 +41,4 @@ describe Notifier do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

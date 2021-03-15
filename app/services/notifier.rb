@@ -10,7 +10,13 @@ class Notifier < ApplicationService
   end
 
   def call
-    results = parse_user_zips
+    results = { clinics: 0, users: 0 }
+    @user_zips.each do |user_zip|
+      results[:user_zip] = user_zip
+      next unless parse_matching_locations(results)
+
+      dm_results(results)
+    end
     { clinics: results[:clinics], users: results[:users] }
   end
 
@@ -30,19 +36,6 @@ class Notifier < ApplicationService
       results[:message] << nil
       results[:clinics] += 1
     end
-    results
-  end
-
-  def parse_user_zips
-    results = { clinics: 0, users: 0 }
-    @user_zips.each do |user_zip|
-      results[:message] = nil
-      results[:user_zip] = user_zip
-      results = parse_matching_locations(results)
-      next unless results[:message]
-
-      dm_results(results)
-    end
-    { clinics: results[:clinics], users: results[:users] }
+    results[:message]
   end
 end

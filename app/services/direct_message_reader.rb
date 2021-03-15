@@ -30,10 +30,10 @@ class DirectMessageReader < ApplicationService
   def read(direct_message:, stopped:, subscribed:)
     if dm_is_a_zip_and_user_zip_saved?(direct_message)
       subscribed += 1
-      Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}"
+      Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}."
     elsif direct_message.text.downcase == 'stop'
       stopped += UserZip.where(user_id: direct_message.sender_id).delete_all
-      Rails.logger.info "#{direct_message.sender_id} stopped subscribing"
+      Rails.logger.info "#{direct_message.sender_id} stopped subscribing."
     end
     ReadDirectMessage.create(direct_message_id: direct_message.id)
     { stopped: stopped, subscribed: subscribed }

@@ -19,7 +19,7 @@ class Notifier < ApplicationService
   def dm_results(results)
     TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
     results[:users] += 1
-    Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}"
+    Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 
   def parse_matching_locations(results)

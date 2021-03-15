@@ -13,7 +13,7 @@ class Notifier < ApplicationService
     results = { clinics: 0, users: 0 }
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
-      next unless parse_matching_locations(results)
+      next unless message_for_matching_locations(results)
 
       dm_results(results)
     end
@@ -28,7 +28,7 @@ class Notifier < ApplicationService
     Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 
-  def parse_matching_locations(results)
+  def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
       results[:message] ||= DM_HEADER.dup
       results[:message] <<

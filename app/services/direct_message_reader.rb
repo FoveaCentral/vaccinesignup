@@ -8,16 +8,13 @@ class DirectMessageReader < ApplicationService
   end
 
   def call
-    stopped = 0
-    subscribed = 0
+    results = { stopped: 0, subscribed: 0 }
     @direct_messages.each do |dm|
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
-      h = read(direct_message: dm, stopped: stopped, subscribed: subscribed)
-      stopped = h[:stopped]
-      subscribed = h[:subscribed]
+      results = read(direct_message: dm, results: results)
     end
-    { stopped: stopped, subscribed: subscribed }
+    results
   end
 
   private
@@ -27,15 +24,17 @@ class DirectMessageReader < ApplicationService
                                                                              zip: direct_message.text).persisted?
   end
 
-  def read(direct_message:, stopped:, subscribed:)
+  # rubocop:disable Metrics/AbcSize
+  def read(direct_message:, results:)
     if dm_is_a_zip_and_user_zip_saved?(direct_message)
-      subscribed += 1
+      results[:subscribed] += 1
       Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}."
     elsif direct_message.text.downcase == 'stop'
-      stopped += UserZip.where(user_id: direct_message.sender_id).delete_all
+      results[:stopped] += UserZip.where(user_id: direct_message.sender_id).delete_all
       Rails.logger.info "#{direct_message.sender_id} stopped subscribing."
     end
     ReadDirectMessage.create(direct_message_id: direct_message.id)
-    { stopped: stopped, subscribed: subscribed }
+    results
   end
+  # rubocop:enable Metrics/AbcSize
 end

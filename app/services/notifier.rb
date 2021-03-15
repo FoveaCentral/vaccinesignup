@@ -23,7 +23,7 @@ class Notifier < ApplicationService
   end
 
   def parse_matching_locations(results)
-    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").each do |clinic|
+    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
       results[:message] ||= DM_HEADER.dup
       results[:message] <<
         "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"

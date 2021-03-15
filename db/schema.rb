@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_03_11_170923) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "locations", force: :cascade do |t|
     t.string "x_parent"
     t.integer "num_children"
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_170923) do
     t.string "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_zips_on_user_id"
     t.index ["zip"], name: "index_user_zips_on_zip"
   end
 

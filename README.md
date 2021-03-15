@@ -20,6 +20,8 @@ This app notifies users who tweet their zip codes to [@vaccinesignup](https://tw
 
    ![appointments](https://user-images.githubusercontent.com/113809/111059071-bc8cc100-8460-11eb-9148-74998844b8e9.png)
 
+4. To stop all notifications, DM `stop` to [@vaccinesignup](https://twitter.com/vaccinesignup/).
+
 ### Developers
 
 1. To sync Locations and, if there are changes, notify users:

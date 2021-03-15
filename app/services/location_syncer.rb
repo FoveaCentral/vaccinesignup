@@ -28,6 +28,6 @@ class LocationSyncer < ApplicationService
 
   def js_locations
     response = Net::HTTP.get(URI(LA_URL)).gsub('var unfiltered = ', '')
-    JSON.parse(response)
+    JSON.parse(response).sort_by { |l| [l['id'].blank? ? 1 : 0, l['id'].to_i] } # sort blacnk IDs last
   end
 end

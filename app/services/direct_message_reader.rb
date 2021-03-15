@@ -12,7 +12,7 @@ class DirectMessageReader < ApplicationService
     @direct_messages.each do |dm|
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
-      results = read(direct_message: dm, results: results)
+      read(direct_message: dm, results: results)
     end
     results
   end
@@ -34,7 +34,6 @@ class DirectMessageReader < ApplicationService
       Rails.logger.info "#{direct_message.sender_id} stopped subscribing."
     end
     ReadDirectMessage.create(direct_message_id: direct_message.id)
-    results
   end
   # rubocop:enable Metrics/AbcSize
 end

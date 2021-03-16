@@ -19,6 +19,8 @@ describe Notifier do
 
       it { should include({ clinics: 1, users: 1 }) }
 
+      specify('message text') { expect(subject[:message]).to include Notifier::DM_FOOTER }
+
       context "when Location doesn't have a link" do
         describe 'message text' do
           let(:location) { FactoryBot.create(:location, :location_without_link) }

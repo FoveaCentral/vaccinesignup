@@ -3,6 +3,7 @@
 # Notifies users about available appointments in the zips they follow.
 class Notifier < ApplicationService
   DM_HEADER = ['Appointments now available at:', nil].freeze
+  DM_FOOTER = "We'll send you available appointments as soon as we're aware. DM 'stop' to cease notifications."
 
   def initialize(user_zips = UserZip.find_each)
     super()
@@ -17,7 +18,7 @@ class Notifier < ApplicationService
 
       dm_results(results)
     end
-    { clinics: results[:clinics], users: results[:users] }
+    { message: results[:message], clinics: results[:clinics], users: results[:users] }
   end
 
   private
@@ -28,6 +29,7 @@ class Notifier < ApplicationService
     Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 
+  # rubocop:disable Metrics/AbcSize
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
       results[:message] ||= DM_HEADER.dup
@@ -36,6 +38,7 @@ class Notifier < ApplicationService
       results[:message] << nil
       results[:clinics] += 1
     end
-    results[:message]
+    results[:message] << DM_FOOTER if results[:message]
   end
+  # rubocop:enable Metrics/AbcSize
 end

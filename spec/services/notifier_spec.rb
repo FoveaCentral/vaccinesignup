@@ -31,7 +31,7 @@ describe Notifier do
     context 'when a user subscribes to a non-existing Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90044')] }
 
-      it { should eq({ clinics: 0, users: 0 }) }
+      it { should include({ clinics: 0, users: 0 }) }
 
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }

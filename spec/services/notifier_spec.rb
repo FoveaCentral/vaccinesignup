@@ -8,15 +8,22 @@ describe Notifier do
 
     before do
       allow(TWITTER_CLIENT).to receive(:create_direct_message)
-      FactoryBot.create(:location)
+      location
     end
 
+    let(:location) { FactoryBot.create(:location) }
     let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210')] }
 
     context 'when a user subscribes to a matching Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210')] }
 
       it { should eq({ clinics: 1, users: 1 }) }
+
+      context "when Location doesn't have a link" do
+        let(:location) { FactoryBot.create(:location, :location_without_link) }
+
+        specify('message text') { expect(subject[:message]).not_to include(/sign-up at/i) }
+      end
 
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }

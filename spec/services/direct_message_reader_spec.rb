@@ -17,21 +17,21 @@ describe DirectMessageReader do
         msg
       end
 
-      context "when user's DM is a zip alone" do
+      context 'when DM is just a zip' do
         it { should eq({ stopped: 0, subscribed: 1 }) }
       end
 
-      context "when user's DM includes a zip alone" do
+      context "when DM embeds two zip in other text" do
         let(:subscribe_message) do
           msg = double
           allow(msg).to receive(:id).and_return(1)
           allow(msg).to receive(:sender_id).and_return(167_894_675)
           allow(msg).to receive(:recipient_id).and_return(490_732_052)
-          allow(msg).to receive(:text).and_return('Please let me know about appointments in 90210. Thanks!')
+          allow(msg).to receive(:text).and_return('LA County ranges from neighborhoods like 90210 to 90044.')
           msg
         end
 
-        it { should eq({ stopped: 0, subscribed: 1 }) }
+        it { should eq({ stopped: 0, subscribed: 2 }) }
       end
 
       context 'when a user unsubscribes' do
@@ -47,19 +47,6 @@ describe DirectMessageReader do
 
         it { should eq({ stopped: 1, subscribed: 1 }) }
       end
-    end
-    context 'when a user subscribes to two embedded zips' do
-      let(:messages) { [embedded_subscribe_message] }
-      let(:embedded_subscribe_message) do
-        msg = double
-        allow(msg).to receive(:id).and_return(1)
-        allow(msg).to receive(:sender_id).and_return(167_894_675)
-        allow(msg).to receive(:recipient_id).and_return(490_732_052)
-        allow(msg).to receive(:text).and_return('LA County ranges from neighborhoods like 90210 to 90044.')
-        msg
-      end
-
-      it { should eq({ stopped: 0, subscribed: 2 }) }
     end
   end
 end

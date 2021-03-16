@@ -19,21 +19,23 @@ class DirectMessageReader < ApplicationService
 
   private
 
-  def dm_is_a_zip_and_user_zip_saved?(direct_message)
-    !(direct_message.text =~ /[ ,.]*[0-9]{5}[ ,.]*/).nil? &&
-      UserZip.create_or_find_by(user_id: direct_message.sender_id, zip: direct_message.text).persisted?
+  def create_zips_from_dm(direct_message:, results:)
+    direct_message.text.scan(/\d{5}(?:[-\s]\d{4})?/).each do |zip|
+      next if UserZip.exists?(user_id: direct_message.sender_id, zip: zip)
+
+      UserZip.create(user_id: direct_message.sender_id, zip: zip) && results[:subscribed] += 1
+      Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}."
+    end
+    results[:subscribed]
   end
 
-  # rubocop:disable Metrics/AbcSize
   def read(direct_message:, results:)
-    if dm_is_a_zip_and_user_zip_saved?(direct_message)
-      results[:subscribed] += 1
-      Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}."
-    elsif direct_message.text.downcase == 'stop'
+    if direct_message.text.downcase == 'stop'
       results[:stopped] += UserZip.where(user_id: direct_message.sender_id).delete_all
       Rails.logger.info "#{direct_message.sender_id} stopped subscribing."
+    else
+      create_zips_from_dm(direct_message: direct_message, results: results)
     end
     ReadDirectMessage.create(direct_message_id: direct_message.id)
   end
-  # rubocop:enable Metrics/AbcSize
 end

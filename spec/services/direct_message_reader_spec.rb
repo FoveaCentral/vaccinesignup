@@ -21,7 +21,7 @@ describe DirectMessageReader do
         it { should eq({ stopped: 0, subscribed: 1 }) }
       end
 
-      context "when DM embeds two zip in other text" do
+      context 'when DM embeds two zip in other text' do
         let(:subscribe_message) do
           msg = double
           allow(msg).to receive(:id).and_return(1)

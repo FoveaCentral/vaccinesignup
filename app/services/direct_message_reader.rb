@@ -20,8 +20,8 @@ class DirectMessageReader < ApplicationService
   private
 
   def dm_is_a_zip_and_user_zip_saved?(direct_message)
-    !(direct_message.text =~ /^[0-9]{5}$/).nil? && UserZip.create_or_find_by(user_id: direct_message.sender_id,
-                                                                             zip: direct_message.text).persisted?
+    !(direct_message.text =~ /[ ,.]*[0-9]{5}[ ,.]*/).nil? &&
+      UserZip.create_or_find_by(user_id: direct_message.sender_id, zip: direct_message.text).persisted?
   end
 
   # rubocop:disable Metrics/AbcSize

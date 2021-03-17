@@ -24,8 +24,7 @@ class Notifier < ApplicationService
   private
 
   def clinic_link(clinic)
-    output = []
-    output << "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2})."
+    output = ["#{clinic.name} (#{clinic.addr1}, #{clinic.addr2})."]
     output << "Check eligibility and sign-up at #{clinic.link}" if clinic.link
     output * "\n"
   end

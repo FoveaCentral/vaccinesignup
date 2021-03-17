@@ -26,7 +26,6 @@ class DirectMessageReader < ApplicationService
       UserZip.create(user_id: direct_message.sender_id, zip: zip) && results[:subscribed] += 1
       Rails.logger.info "#{direct_message.sender_id} subscribed to #{direct_message.text}."
     end
-    results[:subscribed]
   end
 
   def read(direct_message:, results:)

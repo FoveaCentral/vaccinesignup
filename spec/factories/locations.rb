@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :location do
-    organization { 'Reported' }
     name { 'Rite Aid Pharmacy #5462' }
     addr1 { '300 North Canon Drive' }
     addr2 { 'Beverly Hills, CA 90210' }
@@ -10,6 +9,12 @@ FactoryBot.define do
 
     trait :location_without_link do
       link { nil }
+    end
+    trait 90044 do
+      name { 'Crenshaw Clinic' }
+      addr1 { '1261 W 79th Street' }
+      addr2 { 'Los Angeles, CA 90044' }
+      link { 'https://carbonhealth.com/covid-19-vaccines' }
     end
   end
 end

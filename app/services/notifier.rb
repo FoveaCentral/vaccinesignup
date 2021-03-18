@@ -15,7 +15,9 @@ class Notifier < ApplicationService
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
       next unless message_for_matching_locations(results)
-
+    end
+    if results[:message]
+      results[:message] << DM_FOOTER
       dm_results(results)
     end
     { clinics: results[:clinics], message: results[:message], users: results[:users] }
@@ -35,7 +37,6 @@ class Notifier < ApplicationService
     Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 
-  # rubocop:disable Metrics/AbcSize
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
       results[:message] ||= DM_HEADER.dup
@@ -43,7 +44,6 @@ class Notifier < ApplicationService
       results[:message] << nil
       results[:clinics] += 1
     end
-    results[:message] << DM_FOOTER if results[:message]
+    results[:message]
   end
-  # rubocop:enable Metrics/AbcSize
 end

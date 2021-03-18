@@ -7,5 +7,9 @@ FactoryBot.define do
     addr1 { '300 North Canon Drive' }
     addr2 { 'Beverly Hills, CA 90210' }
     link { 'https://www.riteaid.com/pharmacy/covid-qualifier' }
+
+    trait :location_without_link do
+      link { nil }
+    end
   end
 end

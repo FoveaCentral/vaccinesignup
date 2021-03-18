@@ -18,10 +18,16 @@ class Notifier < ApplicationService
 
       dm_results(results)
     end
-    { message: results[:message], clinics: results[:clinics], users: results[:users] }
+    { clinics: results[:clinics], message: results[:message], users: results[:users] }
   end
 
   private
+
+  def clinic_link(clinic)
+    output = ["#{clinic.name} (#{clinic.addr1}, #{clinic.addr2})."]
+    output << "Check eligibility and sign-up at #{clinic.link}" if clinic.link
+    output * "\n"
+  end
 
   def dm_results(results)
     TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
@@ -33,8 +39,7 @@ class Notifier < ApplicationService
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
       results[:message] ||= DM_HEADER.dup
-      results[:message] <<
-        "#{clinic.name} (#{clinic.addr1}, #{clinic.addr2}). Check eligibility and sign-up at #{clinic.link}"
+      results[:message] << clinic_link(clinic)
       results[:message] << nil
       results[:clinics] += 1
     end

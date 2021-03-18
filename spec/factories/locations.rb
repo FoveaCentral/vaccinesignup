@@ -10,7 +10,7 @@ FactoryBot.define do
     trait :location_without_link do
       link { nil }
     end
-    trait 90044 do
+    trait '90044' do
       name { 'Crenshaw Clinic' }
       addr1 { '1261 W 79th Street' }
       addr2 { 'Los Angeles, CA 90044' }

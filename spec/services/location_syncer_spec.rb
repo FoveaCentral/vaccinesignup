@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
-describe LocationSyncer do
-  LOCATION_ATTRIBUTES = {
-    :name => "Rite Aid Pharmacy #5462",
-    :addr1 => "300 North Canon Drive",
-    :addr2 => "Beverly Hills, CA 90210",
-    :link => "https://www.riteaid.com/pharmacy/covid-qualifier"
-  }
+LOCATION_ATTRIBUTES = {
+  name: 'Rite Aid Pharmacy #5462',
+  addr1: '300 North Canon Drive',
+  addr2: 'Beverly Hills, CA 90210',
+  link: 'https://www.riteaid.com/pharmacy/covid-qualifier'
+}.freeze
 
+# rubocop:disable Metrics/BlockLength
+describe LocationSyncer do
   let(:location) { Location.first }
   let(:locations) { JSON.parse(File.read('./spec/fixtures/locations.json')) }
 
@@ -49,3 +50,4 @@ describe LocationSyncer do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

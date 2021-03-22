@@ -6,11 +6,29 @@ require 'net/http'
 class LocationSyncer < ApplicationService
   LA_URL = 'http://publichealth.lacounty.gov/acd/ncorona2019/js/pod-data.js'
 
+  # Creates a LocationSyncer, setting @locations to the specified array of
+  # location attributes. Defaults to LA County's locations.
+  #
+  # @param locations [Array] array of location-attribute hashes
+  # @return [LocationSyncer]
+  # @example
+  #   LocationSyncer.new
   def initialize(locations = js_locations)
     super()
     @locations = locations
   end
 
+  # Creates or updates Locations based on the array of location-attribute
+  # hashes @locations.
+  #
+  # @return [Hash] results tallying new, updated, and total Locations
+  # @example
+  #   LocationSyncer.call
+  #     => {
+  #             :new => 3,
+  #         :updated => 37,
+  #           :total => 403
+  #     }
   def call
     results = { new: 0, updated: 0 }
     results[:total] = @locations.each do |attr|

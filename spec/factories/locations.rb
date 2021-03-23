@@ -5,6 +5,7 @@ FactoryBot.define do
     name { 'Rite Aid Pharmacy #5462' }
     addr1 { '300 North Canon Drive' }
     addr2 { 'Beverly Hills, CA 90210' }
+    la_id { '5462' }
     link { 'https://www.riteaid.com/pharmacy/covid-qualifier' }
 
     trait :with_bad_name do

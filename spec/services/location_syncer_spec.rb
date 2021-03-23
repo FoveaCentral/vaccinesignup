@@ -2,6 +2,7 @@
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
 LOCATION_ATTRIBUTES = {
+  la_id: '5462',
   name: 'Rite Aid Pharmacy #5462',
   addr1: '300 North Canon Drive',
   addr2: 'Beverly Hills, CA 90210',

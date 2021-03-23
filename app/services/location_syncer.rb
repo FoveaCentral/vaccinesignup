@@ -32,7 +32,8 @@ class LocationSyncer < ApplicationService
   def call
     results = { new: 0, updated: 0 }
     results[:total] = @locations.each do |attr|
-      location = Location.find_by_best_key(la_id: attr.delete('id'), address1: attr['addr1']) || Location.new
+      la_id = attr.delete('id')
+      location = Location.find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
       location.attributes = attr
       (location.new_record? && results[:new] += 1) || (location.changed? && results[:updated] += 1)
       location.save

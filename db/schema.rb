@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_03_23_013905) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "locations", force: :cascade do |t|
     t.string "x_parent"
     t.integer "num_children"

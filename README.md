@@ -25,16 +25,10 @@ This bot notifies LA County users who tweet their zip codes to [@vaccinesignup](
 
 ### Developers
 
-1. To sync Locations:
+To sync Locations:
 ```
 rake vaccinesignup:sync_locations
 ```
-2. To read DMs and, if there are subscribed zip codes, notify users:
-```
-rake vaccinesignup:read_and_notify
-```
-
-When configuring bots for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
 ## Copyright
 

@@ -2,6 +2,7 @@
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
 LOCATION_ATTRIBUTES = {
+  la_id: '5462',
   name: 'Rite Aid Pharmacy #5462',
   addr1: '300 North Canon Drive',
   addr2: 'Beverly Hills, CA 90210',
@@ -17,7 +18,7 @@ describe LocationSyncer do
     subject { LocationSyncer.call(locations) }
 
     context 'when no Locations exist' do
-      it { should eq({ total: 1, new: 1, updated: 0 }) }
+      it { should include({ total: 1, new: 1, updated: 0 }) }
 
       context 'creates Location' do
         before { LocationSyncer.call(locations) }
@@ -34,7 +35,7 @@ describe LocationSyncer do
     context 'when a matching Location exists' do
       before { FactoryBot.create(:location, :with_bad_name) }
 
-      it { should eq({ total: 1, new: 0, updated: 1 }) }
+      it { should include({ total: 1, new: 0, updated: 1 }) }
 
       context 'updates Location' do
         before { LocationSyncer.call(locations) }

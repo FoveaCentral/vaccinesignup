@@ -13,12 +13,38 @@ class Location < ApplicationRecord
 
   # Finds the Location matching the specified ID or street address.
   #
-  # @param id [String] the Location's ID
+  # @param la_id [String] the Location's ID from LA County
   # @param address1 [String] the Location's street address line 1
   # @return [Location] the matching Location
   # @example
-  #   Location.find_by_best_key('1', '1261 W 79th Street')
-  def self.find_by_best_key(id, address1)
-    Location.where('id = ? OR addr1 = ?', id.to_i, address1).limit(1).find_each.first
+  #   Location.find_by_best_key(la_id: '1', address1: '1261 W 79th Street')
+  def self.find_by_best_key(la_id:, address1:)
+    if la_id.present?
+      Location.where('la_id = ?', la_id.to_s)
+    elsif address1.present?
+      Location.where('addr1 = ?', address1.to_s)
+    else
+      Location.none
+    end.first
+  end
+
+  # Finds or initializes the Location with the specified attributes.
+  #
+  # @param attr [Hash] the attributes for the Location
+  # @return [Location] the found or initialized Location
+  # @example
+  #   Location.find_or_init({ la_id: '1', address1: '1261 W 79th Street' })
+  def self.find_or_init(attr)
+    la_id = attr.delete('id')
+    location = find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
+    location.attributes = attr
+    location
+  end
+
+  # Returns the Location's zip code.
+  #
+  # @return [String] the zip code
+  def zip
+    @zip ||= addr2.scan(/\d{5}(?:[-\s]\d{4})?/).first
   end
 end

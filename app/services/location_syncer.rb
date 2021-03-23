@@ -21,25 +21,34 @@ class LocationSyncer < ApplicationService
   # Creates or updates Locations based on the array of location-attribute
   # hashes @locations.
   #
-  # @return [Hash] results tallying new, updated, and total Locations
+  # @return [Hash] results tallying zips and new, updated, and total Locations
   # @example
   #   LocationSyncer.call
   #     => {
-  #             :new => 3,
-  #         :updated => 37,
-  #           :total => 403
+  #             :new => 388,
+  #         :updated => 0,
+  #            :zips => [
+  #                       "90044",
+  #                       "91340",
+  #                       ...
+  #                     ],
+  #           :total => 405
   #     }
+  # rubocop:disable Metrics/AbcSize
   def call
-    results = { new: 0, updated: 0 }
+    results = { new: 0, updated: 0, zips: Set.new }
     results[:total] = @locations.each do |attr|
-      location = Location.find_by_best_key(attr.delete('id'), attr['addr1']) || Location.new
-      location.attributes = attr
-      (location.new_record? && results[:new] += 1) || (location.changed? && results[:updated] += 1)
+      next if attr['addr1'].blank?
+
+      location = Location.find_or_init(attr)
+      results[:zips] << location.zip if (location.new_record? && results[:new] += 1) ||
+                                        (location.changed? && results[:updated] += 1)
       location.save
     end.size
     log_results(results)
     results
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

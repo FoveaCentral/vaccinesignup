@@ -28,6 +28,12 @@ class Location < ApplicationRecord
     end.first
   end
 
+  # Finds or initializes the Location with the specified attributes.
+  #
+  # @param attr [Hash] the attributes for the Location
+  # @return [Location] the found or initialized Location
+  # @example
+  #   Location.find_or_init({ la_id: '1', address1: '1261 W 79th Street' })
   def self.find_or_init(attr)
     la_id = attr.delete('id')
     location = find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
@@ -35,6 +41,9 @@ class Location < ApplicationRecord
     location
   end
 
+  # Returns the Location's zip code.
+  #
+  # @return [String] the zip code
   def zip
     @zip ||= addr2.scan(/\d{5}(?:[-\s]\d{4})?/).first
   end

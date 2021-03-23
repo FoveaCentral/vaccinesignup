@@ -24,7 +24,7 @@ describe Notifier do
 
       context "when Location doesn't have a link" do
         describe 'message text' do
-          let(:location) { FactoryBot.create(:location, :location_without_link) }
+          let(:location) { FactoryBot.create(:location, :without_link) }
 
           it { expect(subject[:message].join).not_to match(/sign-up at/i) }
         end

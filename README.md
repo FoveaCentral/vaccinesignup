@@ -36,6 +36,11 @@ rake vaccinesignup:read_and_notify
 
 When configuring bots for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
+To back-up production data and restore locally:
+```
+rake vaccinesignup:back_up
+```
+
 ## Copyright
 
 Copyright © 2021 Roderick Monje. See [LICENSE](LICENSE) for further details.

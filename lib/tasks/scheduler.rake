@@ -10,12 +10,9 @@ namespace :vaccinesignup do
     end
   end
 
-  desc 'Sync Locations and, if there are changes, notify users.'
-  task sync_and_notify: :environment do
-    results = SyncBot.call
-    if results
-      puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-      Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-    end
+  desc 'Sync Locations.'
+  task sync_locations: :environment do
+    results = LocationSyncer.call
+    puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations."
   end
 end

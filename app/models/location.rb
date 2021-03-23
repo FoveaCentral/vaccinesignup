@@ -18,7 +18,7 @@ class Location < ApplicationRecord
   # @return [Location] the matching Location
   # @example
   #   Location.find_by_best_key('1', '1261 W 79th Street')
-  def self.find_by_best_key(id, address1)
-    Location.where('id = ? OR addr1 = ?', id.to_i, address1).limit(1).find_each.first
+  def self.find_by_best_key(la_id:, address1:)
+    Location.where('la_id = ? OR addr1 = ?', la_id.to_i, address1).limit(1).find_each.first
   end
 end

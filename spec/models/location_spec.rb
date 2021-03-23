@@ -10,6 +10,8 @@ describe Location do
     let(:location) { FactoryBot.create(:location) }
 
     context 'with nil :address1 and :la_id' do
+      before { location }
+
       it { should eq nil }
     end
     context 'with present :la_id' do

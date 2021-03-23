@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_170923) do
+ActiveRecord::Schema.define(version: 2021_03_23_013905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,9 @@ ActiveRecord::Schema.define(version: 2021_03_11_170923) do
     t.string "system"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "la_id"
     t.index ["addr1"], name: "index_locations_on_addr1"
+    t.index ["la_id"], name: "index_locations_on_la_id"
   end
 
   create_table "read_direct_messages", force: :cascade do |t|

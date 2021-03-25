@@ -32,12 +32,12 @@ class Notifier < ApplicationService
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
       next unless message_for_matching_locations(results)
-    end
-    if results[:message]
+
       results[:message] << DM_FOOTER
       dm_results(results)
+      results[:message] = nil
     end
-    { clinics: results[:clinics], message: results[:message], users: results[:users] }
+    { clinics: results[:clinics], users: results[:users] }
   end
 
   private

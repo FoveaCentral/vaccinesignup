@@ -43,6 +43,13 @@ describe Notifier do
 
         let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210'), UserZip.new(user_id: 1, zip: '90044')] }
 
+        describe 'TWITTER_CLIENT' do
+          subject { TWITTER_CLIENT }
+
+          after { Notifier.call(user_zips) }
+
+          it { is_expected.to receive(:create_direct_message).twice }
+        end
         describe 'message text' do
           it { expect(subject[:message].join.scan(Regexp.new((Notifier::DM_FOOTER[0..19]).to_s)).count).to eq 1 }
         end

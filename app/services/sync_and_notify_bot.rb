@@ -3,14 +3,14 @@
 require 'net/http'
 
 # Sync Locations and DM users about new appointment-locations.
-class SyncBot < ApplicationService
+class SyncAndNotifyBot < ApplicationService
   # Syncs Locations by calling LocationSyncer.call. If any Locations were
   # created/updated, DMs the updates by calling Notifier.call. In either case,
   # returns results as a Hash.
   #
   # @return [Hash] LocationSyncer or Notifier results
   # @example
-  #   SyncBot.call
+  #   SyncAndNotifyBot.call
   #     => {
   #             :new => 388,
   #         :updated => 0,

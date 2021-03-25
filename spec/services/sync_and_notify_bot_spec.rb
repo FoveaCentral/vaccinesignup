@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
-describe SyncBot do
+describe SyncAndNotifyBot do
   describe '#call' do
     before {  allow(LocationSyncer).to receive(:call).and_return results }
 
-    after { SyncBot.call }
+    after { SyncAndNotifyBot.call }
 
     describe Notifier do
       subject { Notifier }

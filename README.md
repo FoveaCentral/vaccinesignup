@@ -38,18 +38,18 @@ When configuring tasks for production, the timing on both should be optimized de
 #### Mirror production locally
 
 1. Configure environment variables:
-```
+```bash
 export TWITTER_CONSUMER_KEY=[your key]
 export TWITTER_CONSUMER_SECRET=[your secret]
 export TWITTER_ACCESS_TOKEN=[your token]
 export TWITTER_ACCESS_SECRET=[your access secret]
 ```
 2. Reset local database to a known state:
-```
+```bash
 bundle ex rake db:reset
 ```
 3. Back-up production data and restore to the local environment:
-```
+```bash
 rake vaccinesignup:back_up
 ```
 

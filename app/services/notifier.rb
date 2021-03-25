@@ -49,8 +49,12 @@ class Notifier < ApplicationService
   end
 
   def dm_results(results)
-    TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
-    results[:users] += 1
+    begin
+      TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
+      results[:users] += 1
+    rescue Twitter::Error => e
+      Rails.logger.error %Q[#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!]
+    end
     Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 

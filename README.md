@@ -50,7 +50,7 @@ bundle ex rake db:reset
 ```
 3. Back-up production data and restore to the local environment:
 ```bash
-rake vaccinesignup:back_up
+bundle ex rake vaccinesignup:back_up
 ```
 
 ## Copyright

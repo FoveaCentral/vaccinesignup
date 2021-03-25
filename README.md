@@ -36,11 +36,19 @@ rake vaccinesignup:sync_and_notify      # Sync Locations and, if there are chang
 When configuring tasks for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
 #### Mirror production locally
-1. Reset local database to a known state:
+
+1. Configure environment variables:
+```
+export TWITTER_CONSUMER_KEY=[your key]
+export TWITTER_CONSUMER_SECRET=[your secret]
+export TWITTER_ACCESS_TOKEN=[your token]
+export TWITTER_ACCESS_SECRET=[your access secret]
+```
+2. Reset local database to a known state:
 ```
 bundle ex rake db:reset
 ```
-2. Back-up production data and restore to the local environment:
+3. Back-up production data and restore to the local environment:
 ```
 rake vaccinesignup:back_up
 ```

@@ -25,20 +25,32 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 
 ### Developers
 
-1. To sync Locations and, if there are changes, notify users:
-```
-rake vaccinesignup:sync_and_notify
-```
-2. To read DMs and, if there are subscribed zip codes, notify users:
-```
-rake vaccinesignup:read_and_notify
-```
+#### Available tasks
 
-When configuring bots for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
-
-To back-up production data and restore locally:
+```bash
+$ rake -T|grep vacc
+rake vaccinesignup:back_up              # Back-up production data and restore to the local environment
+rake vaccinesignup:read_and_notify      # Read DMs and, if there are subscribed zip codes, notify users
+rake vaccinesignup:sync_and_notify      # Sync Locations and, if there are changes, notify users
 ```
-rake vaccinesignup:back_up
+When configuring tasks for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
+
+#### Mirror production locally
+
+1. Configure environment variables:
+```bash
+export TWITTER_CONSUMER_KEY=[your key]
+export TWITTER_CONSUMER_SECRET=[your secret]
+export TWITTER_ACCESS_TOKEN=[your token]
+export TWITTER_ACCESS_SECRET=[your access secret]
+```
+2. Reset local database to a known state:
+```bash
+bundle ex rake db:reset
+```
+3. Back-up production data and restore to the local environment:
+```bash
+bundle ex rake vaccinesignup:back_up
 ```
 
 ## Copyright

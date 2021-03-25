@@ -2,24 +2,29 @@
 
 require 'net/http'
 
-# Tweet users about new appointments.
+# Sync Locations and DM users about new appointment-locations.
 class SyncBot < ApplicationService
   # Syncs Locations by calling LocationSyncer.call. If any Locations were
-  # created/updated, tweets the updates by calling NotifyBot.call. In either
-  # case, returns results as a Hash.
+  # created/updated, DMs the updates by calling Notifier.call. In either case,
+  # returns results as a Hash.
   #
-  # @return [Hash] results tallying new, updated, and total Locations
+  # @return [Hash] LocationSyncer or Notifier results
   # @example
   #   SyncBot.call
   #     => {
-  #             :new => 3,
-  #         :updated => 37,
-  #           :total => 403
+  #             :new => 388,
+  #         :updated => 0,
+  #            :zips => [
+  #                       "90044",
+  #                       "91340",
+  #                       ...
+  #                     ],
+  #           :total => 405
   #     }
   def call
     results = LocationSyncer.call
-    return results unless (results[:new]).positive? || (results[:updated]).positive?
+    return results unless results[:zips]&.size&.positive?
 
-    NotifyBot.call
+    Notifier.call(UserZip.where(zip: results[:zips]))
   end
 end

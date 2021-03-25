@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccine-notifier/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccine-notifier?branch=main)
 [![Inline docs](http://inch-ci.org/github/ivanoblomov/vaccine-notifier.svg?branch=main)](http://inch-ci.org/github/ivanoblomov/vaccine-notifier)
 
-This bot notifies LA County users who tweet their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine appointments in their area.
+This bot notifies LA County users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine appointments in their area.
 
 ## Usage
 

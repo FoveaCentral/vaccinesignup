@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
-describe SyncBot do
+describe SyncAndNotifyBot do
   describe '#call' do
     before {  allow(LocationSyncer).to receive(:call).and_return results }
 
-    after { SyncBot.call }
+    after { SyncAndNotifyBot.call }
 
-    describe NotifyBot do
-      subject { NotifyBot }
+    describe Notifier do
+      subject { Notifier }
 
       context "when there's a new Location" do
-        let(:results) { { new: 1 } }
+        let(:results) { { new: 1, zips: ['00501'] } }
 
         it { should receive(:call) }
       end
       context "when there's an updated Location" do
-        let(:results) { { new: 0, updated: 1 } }
+        let(:results) { { new: 0, updated: 1, zips: ['00501'] } }
 
         it { should receive(:call) }
       end

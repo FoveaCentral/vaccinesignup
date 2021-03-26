@@ -23,13 +23,13 @@ jobs:
       run: bundle install
     - name: Prepare db
       run: bundle exec rake db:prepare RAILS_ENV=test
-    - name: Rubocop checks
-      uses: gimenete/rubocop-action@1.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run tests
       run: bundle exec rake
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Rubocop
+      uses: gimenete/rubocop-action@1.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

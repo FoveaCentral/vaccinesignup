@@ -59,8 +59,8 @@ class Notifier < ApplicationService
 #{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
 )
     end
-    Rails.logger.info
-    "DMd user #{results[:user_zip].user_id} #{results[:clinics]} clinics for #{results[:user_zip].zip}."
+    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:clinics]} clinics for "\
+                      "#{results[:user_zip].zip}."
   end
   # rubocop:enable Metrics/AbcSize
 

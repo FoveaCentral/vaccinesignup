@@ -11,9 +11,6 @@ FactoryBot.define do
     trait :with_bad_name do
       name { 'Rite Aid Pharmacy' }
     end
-    trait :without_link do
-      link { nil }
-    end
     trait '90044' do
       name { 'Crenshaw Clinic' }
       addr1 { '1261 W 79th Street' }

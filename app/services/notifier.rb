@@ -32,12 +32,12 @@ class Notifier < ApplicationService
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
       next unless message_for_matching_locations(results)
-    end
-    if results[:message]
+
       results[:message] << DM_FOOTER
       dm_results(results)
+      results[:message] = nil
     end
-    { clinics: results[:clinics], message: results[:message], users: results[:users] }
+    { clinics: results[:clinics], users: results[:users] }
   end
 
   private
@@ -49,8 +49,12 @@ class Notifier < ApplicationService
   end
 
   def dm_results(results)
-    TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
-    results[:users] += 1
+    begin
+      TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
+      results[:users] += 1
+    rescue Twitter::Error => e
+      Rails.logger.error %Q[#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!]
+    end
     Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
 

@@ -18,18 +18,6 @@ describe Notifier do
 
       it { should include({ clinics: 1, users: 1 }) }
 
-      describe 'message text' do
-        it { expect(subject[:message]).to include Notifier::DM_FOOTER }
-      end
-
-      context "when Location doesn't have a link" do
-        describe 'message text' do
-          let(:location) { FactoryBot.create(:location, :without_link) }
-
-          it { expect(subject[:message].join).not_to match(/sign-up at/i) }
-        end
-      end
-
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }
 
@@ -43,8 +31,12 @@ describe Notifier do
 
         let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210'), UserZip.new(user_id: 1, zip: '90044')] }
 
-        describe 'message text' do
-          it { expect(subject[:message].join.scan(Regexp.new((Notifier::DM_FOOTER[0..19]).to_s)).count).to eq 1 }
+        describe 'TWITTER_CLIENT' do
+          subject { TWITTER_CLIENT }
+
+          after { Notifier.call(user_zips) }
+
+          it { is_expected.to receive(:create_direct_message).twice }
         end
       end
     end

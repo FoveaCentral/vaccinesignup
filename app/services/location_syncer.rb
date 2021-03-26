@@ -58,6 +58,7 @@ class LocationSyncer < ApplicationService
   end
 
   def log_results(results)
-    Rails.logger.info "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations."
+    Rails.logger.info "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, "\
+                      "which affected these zips: #{results[:zips]}."
   end
 end

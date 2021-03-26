@@ -37,6 +37,7 @@ class Notifier < ApplicationService
       dm_results(results)
       results[:message] = nil
     end
+    Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
     { clinics: results[:clinics], users: results[:users] }
   end
 
@@ -48,15 +49,20 @@ class Notifier < ApplicationService
     output * "\n"
   end
 
+  # rubocop:disable Metrics/AbcSize
   def dm_results(results)
     begin
       TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
       results[:users] += 1
     rescue Twitter::Error => e
-      Rails.logger.error %Q[#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!]
+      Rails.logger.error %(
+#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
+)
     end
-    Rails.logger.info "Found #{results[:clinics]} clinics for #{results[:user_zip].zip}."
+    Rails.logger.info
+    "DMd user #{results[:user_zip].user_id} #{results[:clinics]} clinics for #{results[:user_zip].zip}."
   end
+  # rubocop:enable Metrics/AbcSize
 
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|

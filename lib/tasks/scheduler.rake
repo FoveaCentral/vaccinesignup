@@ -10,18 +10,23 @@ namespace :vaccinesignup do
   desc 'Read DMs and, if there are subscribed zip codes, notify users.'
   task read_and_notify: :environment do
     results = NotifyBot.call
-    if results
-      puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-      Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-    end
+    log_notification_results(results) if results
   end
 
   desc 'Sync Locations and, if there are changes, notify users.'
   task sync_and_notify: :environment do
     results = SyncAndNotifyBot.call
-    if results
-      puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-      Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
+    if results[:total]
+      puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, which "\
+           "affected these zips: #{results[:zips]}."
+    else
+      log_notification_results(results)
     end
+  end
+
+  private
+
+  def log_notification_results(results)
+    puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."
   end
 end

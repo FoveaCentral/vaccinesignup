@@ -11,6 +11,8 @@ gem 'twitter', '~> 7.0'
 
 group :development do
   gem 'listen', '~> 3.5'
+  gem 'spring', '~> 2.1'
+  gem 'spring-commands-rspec', '~> 1.0'
 end
 
 group :development, :production do

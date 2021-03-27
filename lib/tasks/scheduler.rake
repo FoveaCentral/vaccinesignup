@@ -7,12 +7,6 @@ namespace :vaccinesignup do
     sh 'pg_restore --verbose --clean --no-acl --no-owner -h localhost -d vaccine_notifier latest.dump'
   end
 
-  desc 'Read DMs and, if there are subscribed zip codes, notify users.'
-  task read_and_notify: :environment do
-    results = NotifyBot.call
-    log_notification_results(results) if results && Rails.env.development?
-  end
-
   desc 'Sync Locations and, if there are changes, notify users.'
   task sync_and_notify: :environment do
     results = SyncAndNotifyBot.call

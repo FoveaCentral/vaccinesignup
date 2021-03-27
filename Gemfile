@@ -20,7 +20,8 @@ end
 group :development, :test do
   gem 'pry-awesome_print', '~> 9.6.0'
   gem 'pry-rails',         '~> 0.3.0'
-  gem 'spring',            '~> 2.1'
+  gem 'spring', '~> 2.1'
+  gem 'spring-commands-rspec', '~> 1.0'
 end
 
 group :test do

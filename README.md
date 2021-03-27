@@ -30,7 +30,6 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 ```bash
 $ rake -T|grep vacc
 rake vaccinesignup:back_up              # Back-up production data and restore to the local environment
-rake vaccinesignup:read_and_notify      # Read DMs and, if there are subscribed zip codes, notify users
 rake vaccinesignup:sync_and_notify      # Sync Locations and, if there are changes, notify users
 ```
 When configuring tasks for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.

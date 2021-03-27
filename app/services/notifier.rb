@@ -23,7 +23,7 @@ class Notifier < ApplicationService
   # @example
   #   Notifier.call
   #     => {
-  #         :clinics => 10,
+  #         :locations => 10,
   #         :message => ["Appointments now available at:", ...]
   #           :users => 18
   #     }
@@ -37,8 +37,8 @@ class Notifier < ApplicationService
       dm_results(results)
       results[:message] = nil
     end
-    Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-    { clinics: results[:clinics], users: results[:users] }
+    Rails.logger.info "Notified #{results[:users]} users about #{results[:locations]} appointments."
+    { clinics: results[:locations], users: results[:users] }
   end
 
   private
@@ -59,7 +59,7 @@ class Notifier < ApplicationService
 #{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
 )
     end
-    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:clinics]} clinics for "\
+    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} clinics for "\
                       "#{results[:user_zip].zip}."
   end
   # rubocop:enable Metrics/AbcSize
@@ -69,7 +69,7 @@ class Notifier < ApplicationService
       results[:message] ||= DM_HEADER.dup
       results[:message] << clinic_link(clinic)
       results[:message] << nil
-      results[:clinics] += 1
+      results[:locations] += 1
     end
     results[:message]
   end

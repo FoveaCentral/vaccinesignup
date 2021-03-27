@@ -29,6 +29,6 @@ namespace :vaccinesignup do
   private
 
   def log_notification_results(results)
-    puts "Notified #{results[:users]} users about #{results[:clinics]} appointments."
+    puts "Notified #{results[:users]} users about #{results[:locations]} appointments."
   end
 end

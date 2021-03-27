@@ -1,6 +1,6 @@
 AllCops:
   Exclude:
-    - 'bin/bundle'
+    - 'bin/*'
     - 'db/migrate/*'
     - 'db/schema.rb'
   NewCops: enable

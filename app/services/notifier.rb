@@ -28,7 +28,7 @@ class Notifier < ApplicationService
   #           :users => 18
   #     }
   def call
-    results = { clinics: 0, users: 0 }
+    results = { locations: 0, users: 0 }
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
       next unless message_for_matching_locations(results)

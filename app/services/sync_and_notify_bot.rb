@@ -2,7 +2,7 @@
 
 require 'net/http'
 
-# Sync Locations and DM users about new appointment-locations.
+# Sync Locations and DM users about new Locations.
 class SyncAndNotifyBot < ApplicationService
   # Syncs Locations by calling LocationSyncer.call. If any Locations were
   # created/updated, DMs the updates by calling Notifier.call. In either case,

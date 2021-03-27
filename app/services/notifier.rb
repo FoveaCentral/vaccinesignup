@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Notifies users about available appointments in the zips they follow.
+# Notifies users about available Locations in the zips they follow.
 class Notifier < ApplicationService
   DM_HEADER = ['Appointments now available at:', nil].freeze
   DM_FOOTER = "We'll send you available appointments as soon as we're aware. DM 'stop' to cease notifications."
@@ -19,16 +19,16 @@ class Notifier < ApplicationService
 
   # DMs users about Locations in zip codes they follow.
   #
-  # @return [Hash] the message and number of clinics and users DMd
+  # @return [Hash] the message and number of Locations and users DMd
   # @example
   #   Notifier.call
   #     => {
-  #         :clinics => 10,
+  #         :locations => 10,
   #         :message => ["Appointments now available at:", ...]
   #           :users => 18
   #     }
   def call
-    results = { clinics: 0, users: 0 }
+    results = { locations: 0, users: 0 }
     @user_zips.each do |user_zip|
       results[:user_zip] = user_zip
       next unless message_for_matching_locations(results)
@@ -37,15 +37,15 @@ class Notifier < ApplicationService
       dm_results(results)
       results[:message] = nil
     end
-    Rails.logger.info "Notified #{results[:users]} users about #{results[:clinics]} appointments."
-    { clinics: results[:clinics], users: results[:users] }
+    Rails.logger.info "Notified #{results[:users]} users about #{results[:locations]} Locations."
+    { locations: results[:locations], users: results[:users] }
   end
 
   private
 
-  def clinic_link(clinic)
-    output = ["#{clinic.name} (#{clinic.addr1}, #{clinic.addr2})."]
-    output << "Check eligibility and sign-up at #{clinic.link}" if clinic.link
+  def location_entry(location)
+    output = ["#{location.name} (#{location.addr1}, #{location.addr2})."]
+    output << "Check eligibility and sign-up at #{location.link}" if location.link
     output * "\n"
   end
 
@@ -59,17 +59,17 @@ class Notifier < ApplicationService
 #{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
 )
     end
-    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:clinics]} clinics for "\
+    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
                       "#{results[:user_zip].zip}."
   end
   # rubocop:enable Metrics/AbcSize
 
   def message_for_matching_locations(results)
-    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
+    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |location|
       results[:message] ||= DM_HEADER.dup
-      results[:message] << clinic_link(clinic)
+      results[:message] << location_entry(location)
       results[:message] << nil
-      results[:clinics] += 1
+      results[:locations] += 1
     end
     results[:message]
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Notifies users about available appointments in the zips they follow.
+# Notifies users about available Locations in the zips they follow.
 class Notifier < ApplicationService
   DM_HEADER = ['Appointments now available at:', nil].freeze
   DM_FOOTER = "We'll send you available appointments as soon as we're aware. DM 'stop' to cease notifications."
@@ -37,7 +37,7 @@ class Notifier < ApplicationService
       dm_results(results)
       results[:message] = nil
     end
-    Rails.logger.info "Notified #{results[:users]} users about #{results[:locations]} appointments."
+    Rails.logger.info "Notified #{results[:users]} users about #{results[:locations]} Locations."
     { locations: results[:locations], users: results[:users] }
   end
 

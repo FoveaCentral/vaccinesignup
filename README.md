@@ -17,7 +17,7 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 
    ![zip](https://user-images.githubusercontent.com/113809/111058905-b2b68e00-845f-11eb-99d1-3aa0b4adcaad.png)
 
-3. The bot will DM you available appointments in that zip:
+3. The bot will DM you available Locations in that zip:
 
    ![appointments](https://user-images.githubusercontent.com/113809/111059071-bc8cc100-8460-11eb-9148-74998844b8e9.png)
 

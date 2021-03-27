@@ -16,7 +16,7 @@ describe Notifier do
     context 'when a user subscribes to a matching Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210')] }
 
-      it { should include({ clinics: 1, users: 1 }) }
+      it { should include({ locations: 1, users: 1 }) }
 
       describe 'Rails.logger' do
         context 'when Twitter errors out' do
@@ -52,7 +52,7 @@ describe Notifier do
     context 'when a user subscribes to a non-existing Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90044')] }
 
-      it { should include({ clinics: 0, users: 0 }) }
+      it { should include({ locations: 0, users: 0 }) }
 
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }

@@ -19,7 +19,7 @@ class Notifier < ApplicationService
 
   # DMs users about Locations in zip codes they follow.
   #
-  # @return [Hash] the message and number of clinics and users DMd
+  # @return [Hash] the message and number of locations and users DMd
   # @example
   #   Notifier.call
   #     => {
@@ -38,7 +38,7 @@ class Notifier < ApplicationService
       results[:message] = nil
     end
     Rails.logger.info "Notified #{results[:users]} users about #{results[:locations]} appointments."
-    { clinics: results[:locations], users: results[:users] }
+    { locations: results[:locations], users: results[:users] }
   end
 
   private
@@ -59,7 +59,7 @@ class Notifier < ApplicationService
 #{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
 )
     end
-    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} clinics for "\
+    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} locations for "\
                       "#{results[:user_zip].zip}."
   end
   # rubocop:enable Metrics/AbcSize

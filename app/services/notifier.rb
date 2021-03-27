@@ -43,9 +43,9 @@ class Notifier < ApplicationService
 
   private
 
-  def clinic_link(clinic)
-    output = ["#{clinic.name} (#{clinic.addr1}, #{clinic.addr2})."]
-    output << "Check eligibility and sign-up at #{clinic.link}" if clinic.link
+  def clinic_link(location)
+    output = ["#{location.name} (#{location.addr1}, #{location.addr2})."]
+    output << "Check eligibility and sign-up at #{location.link}" if location.link
     output * "\n"
   end
 
@@ -65,9 +65,9 @@ class Notifier < ApplicationService
   # rubocop:enable Metrics/AbcSize
 
   def message_for_matching_locations(results)
-    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |clinic|
+    Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |location|
       results[:message] ||= DM_HEADER.dup
-      results[:message] << clinic_link(clinic)
+      results[:message] << clinic_link(location)
       results[:message] << nil
       results[:locations] += 1
     end

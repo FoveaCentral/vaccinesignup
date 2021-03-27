@@ -18,6 +18,15 @@ describe Notifier do
 
       it { should include({ clinics: 1, users: 1 }) }
 
+      describe 'Rails.logger' do
+        context 'when Twitter errors out' do
+          before { allow(TWITTER_CLIENT).to receive(:create_direct_message).and_raise(Twitter::Error) }
+
+          after { Notifier.call(user_zips) }
+
+          it { expect(Rails.logger).to receive(:error).once }
+        end
+      end
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }
 

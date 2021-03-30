@@ -41,8 +41,14 @@ class LocationSyncer < ApplicationService
       next if attr['addr1'].blank?
 
       location = Location.find_or_init(attr)
-      results[:zips] << location.zip if (location.new_record? && results[:new] += 1) ||
-                                        (location.changed? && results[:updated] += 1)
+      if location.changed?
+        results[:zips] << location.zip
+        if location.new_record? && results[:new] += 1
+          Rails.logger.info "Adding zip #{location.zip} since Location #{location.id} is new"
+        elsif location.changed? && results[:updated] += 1
+          Rails.logger.info "Adding zip #{location.zip} since Location #{location.id} changed: #{location.changes}"
+        end
+      end
       location.save
     end.size
     log_results(results)

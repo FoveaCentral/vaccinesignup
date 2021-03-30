@@ -43,12 +43,6 @@ class Notifier < ApplicationService
 
   private
 
-  def location_entry(location)
-    output = ["#{location.name} (#{location.addr1}, #{location.addr2})."]
-    output << "Check eligibility and sign-up at #{location.link}" if location.link
-    output * "\n"
-  end
-
   # rubocop:disable Metrics/AbcSize
   def dm_results(results)
     begin
@@ -67,7 +61,7 @@ class Notifier < ApplicationService
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |location|
       results[:message] ||= DM_HEADER.dup
-      results[:message] << location_entry(location)
+      results[:message] << location.entry_text
       results[:message] << nil
       results[:locations] += 1
     end

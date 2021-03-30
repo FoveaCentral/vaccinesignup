@@ -2,6 +2,8 @@
 
 # Represents a vaccine location.
 class Location < ApplicationRecord
+  WATCHED_ATTRIBUTES = %w[name addr1 addr2 link].freeze
+
   alias_attribute :xParent, :x_parent
   alias_attribute :NumChildren, :num_children
   alias_attribute :mapZoom, :map_zoom
@@ -46,6 +48,11 @@ class Location < ApplicationRecord
     output = ["#{name} (#{addr1}, #{addr2})."]
     output << "Check eligibility and sign-up at #{link}" if link
     output * "\n"
+  end
+
+  # Returns true if any of the watched attributes have changed?
+  def watched_attributes_changed?
+    changed? && (changes.keys & WATCHED_ATTRIBUTES).present?
   end
 
   # Returns the Location's zip code.

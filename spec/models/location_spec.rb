@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
+
+WATCHED_FIELDS = %w[name addr1 addr2 link].freeze
+
+# rubocop:disable Metrics/BlockLength
 describe Location do
   describe '.find_by_best_key' do
     subject { Location.find_by_best_key(address1: address1, la_id: la_id) }
@@ -25,4 +29,29 @@ describe Location do
       it { should eq location }
     end
   end
+  describe '#watched_attributes_changed?' do
+    context 'when watched attributes change' do
+      WATCHED_FIELDS.each do |attr|
+        context "when ##{attr} changes" do
+          let(:location) { Location.new(attr => 'changed value') }
+
+          subject { location.watched_attributes_changed? }
+
+          it { should be true }
+        end
+      end
+    end
+    context "when watched don't attributes change" do
+      (Location.column_names - WATCHED_FIELDS).each do |attr|
+        context "when ##{attr} changes" do
+          let(:location) { Location.new(attr => 'changed value') }
+
+          subject { location.watched_attributes_changed? }
+
+          it { should be false }
+        end
+      end
+    end
+  end
 end
+# rubocop:enable Metrics/BlockLength

@@ -49,6 +49,7 @@ class LocationSyncer < ApplicationService
     log_results(results)
     results
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 

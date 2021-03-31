@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 TEST_USER_ID = 167_894_675
-# rubocop:disable Metrics/BlockLength
 namespace :vaccinesignup do
   desc 'Back-up production data and restore to the local environment.'
   task back_up: :environment do
@@ -35,4 +34,3 @@ namespace :vaccinesignup do
     puts "Notified #{results[:users]} users about #{results[:locations]} Locations."
   end
 end
-# rubocop:enable Metrics/BlockLength

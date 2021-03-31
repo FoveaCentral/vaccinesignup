@@ -19,8 +19,12 @@ namespace :vaccinesignup do
     next unless Rails.env.development?
 
     if results[:total]
-      puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, which "\
-           "affected these zips: #{results[:zips]}."
+      if results[:zips].present?
+        puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, which "\
+             "affected these zips: #{results[:zips].to_a.to_sentence}."
+      else
+        puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations."
+      end
     else
       log_notification_results(results)
     end

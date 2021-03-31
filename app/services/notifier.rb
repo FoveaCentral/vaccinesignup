@@ -45,16 +45,14 @@ class Notifier < ApplicationService
 
   # rubocop:disable Metrics/AbcSize
   def dm_results(results)
-    begin
-      TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
-      results[:users] += 1
-    rescue Twitter::Error => e
-      Rails.logger.error %(
-#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
-)
-    end
+    TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
+    results[:users] += 1
     Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
                       "#{results[:user_zip].zip}."
+  rescue Twitter::Error => e
+    Rails.logger.error %(
+#{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
+)
   end
   # rubocop:enable Metrics/AbcSize
 

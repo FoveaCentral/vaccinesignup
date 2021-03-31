@@ -19,7 +19,7 @@ class Notifier < ApplicationService
 
   # DMs users about Locations in zip codes they follow.
   #
-  # @return [Hash] the message and number of Locations and users DMd
+  # @return [Hash] the message and number of Locations and users DM'd
   # @example
   #   Notifier.call
   #     => {
@@ -47,7 +47,7 @@ class Notifier < ApplicationService
   def dm_results(results)
     TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
     results[:users] += 1
-    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
+    Rails.logger.info "DM'd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
                       "#{results[:user_zip].zip}."
   rescue Twitter::Error => e
     Rails.logger.error %(

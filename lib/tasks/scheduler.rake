@@ -24,6 +24,12 @@ namespace :vaccinesignup do
     log_notification_results(results) if results && Rails.env.development?
   end
 
+  desc 'Back-up production, restore locally, and delete real users for testing.'
+  task reset_staging: :environment do
+    Rake::Task['vaccinesignup:back_up'].invoke
+    Rake::Task['vaccinesignup:delete_real_users'].invoke
+  end
+
   desc 'Sync Locations and, if there are changes, notify users.'
   task sync_and_notify: :environment do
     results = SyncAndNotifyBot.call

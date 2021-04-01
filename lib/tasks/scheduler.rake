@@ -5,6 +5,8 @@ TEST_USER_ID = 167_894_675
 namespace :vaccinesignup do
   desc 'Back-up production data and restore to the local environment.'
   task back_up: :environment do
+    sh 'rm -f latest.dump'
+    sh 'heroku pg:backups:capture'
     sh 'heroku pg:backups:download'
     sh 'pg_restore --verbose --clean --no-acl --no-owner -h localhost -d vaccine_notifier latest.dump'
   end

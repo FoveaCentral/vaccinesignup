@@ -25,7 +25,7 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 
 ### Developers
 
-#### Available tasks
+#### Available Tasks
 
 ```bash
 $ rake -T|grep vacc
@@ -37,38 +37,38 @@ rake vaccinesignup:sync_and_notify      # Sync Locations and, if there are chang
 ```
 When configuring tasks for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
-#### Mirror production locally
+#### Mirror Production Locally
 
 1. Configure environment variables:
-```bash
-export TWITTER_CONSUMER_KEY=[your key]
-export TWITTER_CONSUMER_SECRET=[your secret]
-export TWITTER_ACCESS_TOKEN=[your token]
-export TWITTER_ACCESS_SECRET=[your access secret]
-```
+    ```bash
+    export TWITTER_CONSUMER_KEY=[your key]
+    export TWITTER_CONSUMER_SECRET=[your secret]
+    export TWITTER_ACCESS_TOKEN=[your token]
+    export TWITTER_ACCESS_SECRET=[your access secret]
+    ```
 2. Reset local database to a known state:
-```bash
-bundle ex rake db:reset
-```
+    ```bash
+    bundle ex rake db:reset
+    ```
 3. Back-up production data and restore to the local environment:
-```bash
-bundle ex rake vaccinesignup:back_up
-```
+    ```bash
+    bundle ex rake vaccinesignup:back_up
+    ```
 
-### Release testing
+#### Release Testing
 
 1. Reset local/staging environment:
-```bash
-rake vaccinesignup:reset_staging
-```
+    ```bash
+    rake vaccinesignup:reset_staging
+    ```
 2. Test location syncing/notification:
-```bash
-rake vaccinesignup:sync_and_notify
-```
+    ```bash
+    rake vaccinesignup:sync_and_notify
+    ```
 3. Test reading DMs/notification:
-```bash
-rake vaccinesignup:read_and_notify
-```
+    ```bash
+    rake vaccinesignup:read_and_notify
+    ```
 
 ## Copyright
 

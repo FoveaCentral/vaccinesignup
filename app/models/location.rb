@@ -2,6 +2,8 @@
 
 # Represents a vaccine location.
 class Location < ApplicationRecord
+  USER_FACING_ATTRIBUTES = %w[name addr1 addr2 link].freeze
+
   alias_attribute :xParent, :x_parent
   alias_attribute :NumChildren, :num_children
   alias_attribute :mapZoom, :map_zoom
@@ -39,6 +41,18 @@ class Location < ApplicationRecord
     location = find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
     location.attributes = attr
     location
+  end
+
+  # Returns descriptive text for this Location.
+  def entry_text
+    output = ["#{name} (#{addr1}, #{addr2})."]
+    output << "Check eligibility and sign-up at #{link}" if link
+    output * "\n"
+  end
+
+  # Returns true if any of the user-facing attributes have changed.
+  def user_facing_attributes_changed?
+    changed? && (changes.keys & USER_FACING_ATTRIBUTES).present?
   end
 
   # Returns the Location's zip code.

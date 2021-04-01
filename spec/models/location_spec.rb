@@ -30,7 +30,7 @@ describe Location do
     end
   end
   describe '#user_facing_attributes_changed?' do
-    context 'when user_facing attributes change' do
+    context 'when user-facing attributes change' do
       USER_FACING_FIELDS.each do |attr|
         context "when ##{attr} changes" do
           let(:location) { Location.new(attr => 'changed value') }
@@ -41,7 +41,7 @@ describe Location do
         end
       end
     end
-    context "when user_facing don't attributes change" do
+    context "when user-facing don't attributes change" do
       (Location.column_names - USER_FACING_FIELDS).each do |attr|
         context "when ##{attr} changes" do
           let(:location) { Location.new(attr => 'changed value') }

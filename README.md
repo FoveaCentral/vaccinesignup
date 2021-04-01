@@ -59,15 +59,15 @@ When configuring tasks for production, the timing on both should be optimized de
 
 1. Reset local/staging environment:
     ```bash
-    rake vaccinesignup:reset_staging
+    bundle ex rake vaccinesignup:reset_staging
     ```
 2. Test location syncing/notification:
     ```bash
-    rake vaccinesignup:sync_and_notify
+    bundle ex rake vaccinesignup:sync_and_notify
     ```
 3. Test reading DMs/notification:
     ```bash
-    rake vaccinesignup:read_and_notify
+    bundle ex rake vaccinesignup:read_and_notify
     ```
 
 ## Copyright

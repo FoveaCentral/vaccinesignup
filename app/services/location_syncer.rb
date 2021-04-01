@@ -40,7 +40,7 @@ class LocationSyncer < ApplicationService
     results[:total] = @locations.each do |attr|
       next if attr['addr1'].blank?
 
-      if (location = Location.find_or_init(attr)).watched_attributes_changed?
+      if (location = Location.find_or_init(attr)).user_facing_attributes_changed?
         results[:zips] << location.zip
         log_location_change(location: location, results: results)
       end

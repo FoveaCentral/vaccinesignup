@@ -2,7 +2,7 @@
 
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
-WATCHED_FIELDS = %w[name addr1 addr2 link].freeze
+USER_FACING_FIELDS = %w[name addr1 addr2 link].freeze
 
 # rubocop:disable Metrics/BlockLength
 describe Location do
@@ -29,24 +29,24 @@ describe Location do
       it { should eq location }
     end
   end
-  describe '#watched_attributes_changed?' do
-    context 'when watched attributes change' do
-      WATCHED_FIELDS.each do |attr|
+  describe '#user_facing_attributes_changed?' do
+    context 'when user_facing attributes change' do
+      USER_FACING_FIELDS.each do |attr|
         context "when ##{attr} changes" do
           let(:location) { Location.new(attr => 'changed value') }
 
-          subject { location.watched_attributes_changed? }
+          subject { location.user_facing_attributes_changed? }
 
           it { should be true }
         end
       end
     end
-    context "when watched don't attributes change" do
-      (Location.column_names - WATCHED_FIELDS).each do |attr|
+    context "when user_facing don't attributes change" do
+      (Location.column_names - USER_FACING_FIELDS).each do |attr|
         context "when ##{attr} changes" do
           let(:location) { Location.new(attr => 'changed value') }
 
-          subject { location.watched_attributes_changed? }
+          subject { location.user_facing_attributes_changed? }
 
           it { should be false }
         end

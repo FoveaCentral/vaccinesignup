@@ -1,7 +1,7 @@
 # @vaccinesignup
 
 [![test](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dad2d32da2d576e4a99a/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccinesignup?branch=main)
 [![Inline docs](http://inch-ci.org/github/ivanoblomov/vaccinesignup.svg?branch=main)](http://inch-ci.org/github/ivanoblomov/vaccinesignup)
 

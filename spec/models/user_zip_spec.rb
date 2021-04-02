@@ -3,10 +3,10 @@
 # require "#{File.dirname(__FILE__)}/../spec_helper"
 
 describe UserZip do
-  context 'when a user already follows 90044' do
+  context 'when a user already follows a zip' do
     before { UserZip.create(user_id: 1, zip: '90044') }
 
-    context 'when following 90210' do
+    context 'when following another zip' do
       let(:user_zip) { UserZip.new(user_id: 1, zip: '90210') }
 
       describe '#save' do

@@ -3,7 +3,7 @@
 # Notifies users about available Locations in the zips they follow.
 class Notifier < ApplicationService
   DM_HEADER = ['Appointments now available at:', nil].freeze
-  DM_FOOTER = "We'll send you available appointments as soon as we're aware. DM 'stop' to cease notifications."
+  DM_FOOTER = "We'll send you updates as soon as we're aware. DM 'stop' to cease notifications."
 
   # Creates a Notifier, setting @user_zips to the specified array of UserZips.
   # Defaults to all existing UserZips.

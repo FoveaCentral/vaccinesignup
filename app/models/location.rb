@@ -46,7 +46,7 @@ class Location < ApplicationRecord
   # Returns descriptive text for this Location.
   def entry_text
     output = ["#{name} (#{addr1}, #{addr2})."]
-    output << "Check eligibility and sign-up at #{link}" if link
+    output << "Check eligibility and sign-up at #{link}" if link.present?
     output * "\n"
   end
 

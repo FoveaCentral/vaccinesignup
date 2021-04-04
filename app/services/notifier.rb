@@ -3,7 +3,7 @@
 # Notifies users about available Locations in the zips they follow.
 class Notifier < ApplicationService
   DM_HEADER = ['Appointments now available at:', nil].freeze
-  DM_FOOTER = "We'll send you available appointments as soon as we're aware. DM 'stop' to cease notifications."
+  DM_FOOTER = "We'll send you updates as soon as we're aware. DM 'stop' to cease notifications."
 
   # Creates a Notifier, setting @user_zips to the specified array of UserZips.
   # Defaults to all existing UserZips.
@@ -19,7 +19,7 @@ class Notifier < ApplicationService
 
   # DMs users about Locations in zip codes they follow.
   #
-  # @return [Hash] the message and number of Locations and users DMd
+  # @return [Hash] the message and number of Locations and users DM'd
   # @example
   #   Notifier.call
   #     => {
@@ -43,31 +43,23 @@ class Notifier < ApplicationService
 
   private
 
-  def location_entry(location)
-    output = ["#{location.name} (#{location.addr1}, #{location.addr2})."]
-    output << "Check eligibility and sign-up at #{location.link}" if location.link
-    output * "\n"
-  end
-
   # rubocop:disable Metrics/AbcSize
   def dm_results(results)
-    begin
-      TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
-      results[:users] += 1
-    rescue Twitter::Error => e
-      Rails.logger.error %(
+    TWITTER_CLIENT.create_direct_message(results[:user_zip].user_id, results[:message] * "\n")
+    results[:users] += 1
+    Rails.logger.info "DM'd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
+                      "#{results[:user_zip].zip}."
+  rescue Twitter::Error => e
+    Rails.logger.error %(
 #{e.class} when DMing user_id #{results[:user_zip].user_id} with...\n#{results[:message] * "\n"}!
 )
-    end
-    Rails.logger.info "DMd user #{results[:user_zip].user_id} #{results[:locations]} Locations for "\
-                      "#{results[:user_zip].zip}."
   end
   # rubocop:enable Metrics/AbcSize
 
   def message_for_matching_locations(results)
     Location.where('addr2 LIKE ?', "%#{results[:user_zip].zip}%").find_each do |location|
       results[:message] ||= DM_HEADER.dup
-      results[:message] << location_entry(location)
+      results[:message] << location.entry_text
       results[:message] << nil
       results[:locations] += 1
     end

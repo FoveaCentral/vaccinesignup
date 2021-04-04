@@ -1,7 +1,7 @@
 # @vaccinesignup
 
 [![test](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dad2d32da2d576e4a99a/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccinesignup?branch=main)
 [![Inline docs](http://inch-ci.org/github/ivanoblomov/vaccinesignup.svg?branch=main)](http://inch-ci.org/github/ivanoblomov/vaccinesignup)
 
@@ -25,34 +25,50 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 
 ### Developers
 
-#### Available tasks
+#### Available Tasks
 
 ```bash
 $ rake -T|grep vacc
 rake vaccinesignup:back_up              # Back-up production data and restore to the local environment
 rake vaccinesignup:delete_real_users    # Delete real (non-test) users from development environment
 rake vaccinesignup:read_and_notify      # Read DMs and, if there are subscribed zip codes, notify users
+rake vaccinesignup:reset_staging        # Back-up production, restore locally, and delete real users for testing
 rake vaccinesignup:sync_and_notify      # Sync Locations and, if there are changes, notify users
 ```
 When configuring tasks for production, the timing on both should be optimized depending on how often Locations are updated and DMs are tweeted, respectively.
 
-#### Mirror production locally
+#### Mirror Production Locally
 
 1. Configure environment variables:
-```bash
-export TWITTER_CONSUMER_KEY=[your key]
-export TWITTER_CONSUMER_SECRET=[your secret]
-export TWITTER_ACCESS_TOKEN=[your token]
-export TWITTER_ACCESS_SECRET=[your access secret]
-```
+    ```bash
+    export TWITTER_CONSUMER_KEY=[your key]
+    export TWITTER_CONSUMER_SECRET=[your secret]
+    export TWITTER_ACCESS_TOKEN=[your token]
+    export TWITTER_ACCESS_SECRET=[your access secret]
+    ```
 2. Reset local database to a known state:
-```bash
-bundle ex rake db:reset
-```
+    ```bash
+    bundle ex rake db:reset
+    ```
 3. Back-up production data and restore to the local environment:
-```bash
-bundle ex rake vaccinesignup:back_up
-```
+    ```bash
+    bundle ex rake vaccinesignup:back_up
+    ```
+
+#### Release Testing
+
+1. Reset local/staging environment:
+    ```bash
+    bundle ex rake vaccinesignup:reset_staging
+    ```
+2. Test location syncing/notification:
+    ```bash
+    bundle ex rake vaccinesignup:sync_and_notify
+    ```
+3. Test reading DMs/notification:
+    ```bash
+    bundle ex rake vaccinesignup:read_and_notify
+    ```
 
 ## Copyright
 

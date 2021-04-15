@@ -37,7 +37,8 @@ class Location < ApplicationRecord
   # @example
   #   Location.find_or_init({ la_id: '1', address1: '1261 W 79th Street' })
   def self.find_or_init(attr)
-    la_id = attr.delete('id')
+    la_id = attr.delete('id') || attr.delete('c')
+    attr.delete('lat-lon') # delete duplicate key
     location = find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
     location.attributes = attr
     location

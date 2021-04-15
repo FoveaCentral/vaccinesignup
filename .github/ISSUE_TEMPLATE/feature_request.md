@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest a feature for this project
 title: ''
 labels: 'enhancement'
 assignees: ''
@@ -10,7 +10,7 @@ assignees: ''
 
 ## Goal
 
-Explain the purpose of this feature request. Focus on the problem that needs to be solved and not on a particular solution. For example: "Make it easier for users to reset their passwords."
+Explain the purpose of this feature request/enhancement. Focus on the problem that needs to be solved and not on a particular solution. For example: "Make it easier for users to reset their passwords."
 
 ## Description
 

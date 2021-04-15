@@ -14,8 +14,8 @@ Explain the **goal** of this feature request. Focus on the problem that needs to
 
 ## Description
 
-Provide as much background as the implementer needs to solve the problem. Include screenshots, excerpts from support emails, and links to other issues or pull requests as needed.
+Provide as much background as the developer needs to implement the feature. Include screenshots, excerpts from emails, and links to other issues or pull requests as needed.
 
 ## Success Criteria
 
-How would a stakeholder test whether the issue has been completed or not?
+How would a stakeholder test whether the feature was completed or not?

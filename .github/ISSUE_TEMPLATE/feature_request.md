@@ -2,19 +2,20 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: 'enhancement'
 assignees: ''
 
 ---
+# Feature Request
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Goal
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Explain the **goal** of this feature request. Focus on the problem that needs to be solved and not on a particular solution. For example: "Make it easier for users to reset their passwords."
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Description
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+Provide as much background as the implementer needs to solve the problem. Include screenshots, excerpts from support emails, and links to other issues or pull requests as needed.
+
+## Success Criteria
+
+How would a stakeholder test whether the issue has been completed or not?

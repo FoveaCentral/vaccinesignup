@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_150300) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "la_id"
-    t.string "lat"
-    t.string "lon"
+    t.float "lat"
+    t.float "lon"
     t.index ["addr1"], name: "index_locations_on_addr1"
     t.index ["la_id"], name: "index_locations_on_la_id"
   end

@@ -28,7 +28,7 @@ group :test do
   gem 'database_cleaner-active_record', '~> 2.0'
   gem 'factory_bot', '~> 6.1'
   gem 'rspec-rails', '~> 5'
-  gem 'rubocop', '~> 1.12'
+  gem 'rubocop', '~> 1.13'
   gem 'rubocop-rails', '~> 2.9'
   gem 'rubocop-rspec', '~> 2.2'
   gem 'simplecov', require: false

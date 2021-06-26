@@ -60,7 +60,7 @@ class LocationSyncer < ApplicationService
 
   def log_location_change(location:, results:)
     if location.new_record? && results[:new] += 1
-      Rails.logger.info "Adding zip #{location.zip} since Location #{location.id} is new"
+      Rails.logger.info "Adding zip #{location.zip} since Location #{location.addr1} is new"
     elsif location.changed? && results[:updated] += 1
       Rails.logger.info "Adding zip #{location.zip} since Location #{location.id} changed: #{location.changes}"
     end

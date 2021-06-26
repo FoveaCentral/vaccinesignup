@@ -41,7 +41,7 @@ class Location < ApplicationRecord
     attr.delete('lat-lon') # delete duplicate key
     location = find_by_best_key(la_id: la_id, address1: attr['addr1']) || Location.new(la_id: la_id)
     common_keys = location.attributes.keys & attr.keys
-    common_keys.each { |key| location.attributes[key] = attr[key] }
+    common_keys.each { |key| location[key] = attr[key] }
     location
   end
 

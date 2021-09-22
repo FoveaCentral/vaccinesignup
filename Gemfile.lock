@@ -205,9 +205,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.4.0)
-      rubocop (~> 1.0)
-      rubocop-ast (>= 1.1.0)
+    rubocop-rspec (2.5.0)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     simple_oauth (0.3.1)
     simplecov (0.21.2)
@@ -246,7 +245,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unicode-display_width (2.1.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -267,7 +266,7 @@ DEPENDENCIES
   rspec-rails (~> 5)
   rubocop (~> 1.21)
   rubocop-rails (~> 2.12)
-  rubocop-rspec (~> 2.4)
+  rubocop-rspec (~> 2.5)
   simplecov
   simplecov-lcov
   spring (~> 3.0)

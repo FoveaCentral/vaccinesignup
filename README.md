@@ -3,7 +3,7 @@
 [![test](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccinesignup?branch=main)
-[![Inline docs](http://inch-ci.org/github/ivanoblomov/vaccinesignup.svg?branch=main)](http://inch-ci.org/github/ivanoblomov/vaccinesignup)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5405/badge)](https://bestpractices.coreinfrastructure.org/projects/5405)
 
 This bot notifies LA County users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area.
 

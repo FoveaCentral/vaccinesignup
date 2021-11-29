@@ -1,4 +1,5 @@
 # Copyright the @vaccinesignup contributors.
+# SPDX-License-Identifier: CC0-1.0
 # frozen_string_literal: true
 
 # Reads direct messages for zips that users want to follow.

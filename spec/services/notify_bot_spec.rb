@@ -1,4 +1,5 @@
 # Copyright the @vaccinesignup contributors.
+# SPDX-License-Identifier: CC0-1.0
 # frozen_string_literal: true
 
 require "#{File.dirname(__FILE__)}/../spec_helper"

@@ -1,3 +1,5 @@
+# Copyright the @vaccinesignup contributors.
+# SPDX-License-Identifier: CC0-1.0
 # frozen_string_literal: true
 
 TEST_USER_ID = 167_894_675

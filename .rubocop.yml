@@ -3,4 +3,5 @@ AllCops:
     - 'bin/*'
     - 'db/migrate/*'
     - 'db/schema.rb'
+    - 'vendor/**/*'
   NewCops: enable

@@ -41,7 +41,7 @@ This Twitter bot notifies LA County users who DM their zip codes to [@vaccinesig
 2. Install dependencies with Bundler:
 
     ```ruby
-    bundle
+    bundle install
     ```
 
 #### Available Tasks

@@ -25,6 +25,23 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 
 ### Developers
 
+#### Installation
+
+1. Set your Twitter API keys as environment variables:
+
+    ```bash
+    export TWITTER_CONSUMER_KEY=[your key]
+    export TWITTER_CONSUMER_SECRET=[your secret]
+    export TWITTER_ACCESS_TOKEN=[your access token]
+    export TWITTER_ACCESS_SECRET=[your access secret]
+    ```
+
+2. Install dependencies with Bundler:
+
+    ```ruby
+    bundle
+    ```
+
 #### Available Tasks
 
 ```bash

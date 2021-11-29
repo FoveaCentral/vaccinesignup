@@ -89,6 +89,8 @@ When configuring tasks for production, the timing on both should be optimized de
     bundle ex rake vaccinesignup:read_and_notify
     ```
 
+## [Contributing to @vaccinesignup](.github/CONTRIBUTING.md)
+
 ## Copyright
 
 Copyright © 2021 Roderick Monje. See [LICENSE](LICENSE) for further details.

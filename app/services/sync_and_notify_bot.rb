@@ -1,3 +1,4 @@
+# Copyright the @vaccinesignup contributors.
 # frozen_string_literal: true
 
 require 'net/http'

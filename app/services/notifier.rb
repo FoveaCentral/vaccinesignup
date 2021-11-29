@@ -1,3 +1,4 @@
+# Copyright the @vaccinesignup contributors.
 # frozen_string_literal: true
 
 # Notifies users about available Locations in the zips they follow.

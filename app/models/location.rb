@@ -1,3 +1,4 @@
+# Copyright the @vaccinesignup contributors.
 # frozen_string_literal: true
 
 # Represents a vaccine location.

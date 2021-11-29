@@ -1,3 +1,4 @@
+# Copyright the @vaccinesignup contributors.
 # frozen_string_literal: true
 
 # Reads direct messages for zips that users want to follow.

@@ -1,3 +1,4 @@
+# Copyright the @vaccinesignup contributors.
 # frozen_string_literal: true
 
 TEST_USER_ID = 167_894_675

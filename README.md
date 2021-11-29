@@ -30,6 +30,8 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 1. Set your Twitter API keys as environment variables:
 
     ```bash
+    export POSTGRES_USER=[postgres user]
+    export POSTGRES_PASSWORD=[postgres password]
     export TWITTER_CONSUMER_KEY=[your key]
     export TWITTER_CONSUMER_SECRET=[your secret]
     export TWITTER_ACCESS_TOKEN=[your access token]

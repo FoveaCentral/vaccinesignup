@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccinesignup?branch=main)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5405/badge)](https://bestpractices.coreinfrastructure.org/projects/5405)
 
-This bot notifies LA County users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area.
+This Twitter bot notifies LA County users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area.
 
 ## Usage
 
@@ -30,6 +30,8 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 1. Set your Twitter API keys as environment variables:
 
     ```bash
+    export POSTGRES_USER=[postgres user]
+    export POSTGRES_PASSWORD=[postgres password]
     export TWITTER_CONSUMER_KEY=[your key]
     export TWITTER_CONSUMER_SECRET=[your secret]
     export TWITTER_ACCESS_TOKEN=[your access token]
@@ -39,7 +41,7 @@ This bot notifies LA County users who DM their zip codes to [@vaccinesignup](htt
 2. Install dependencies with Bundler:
 
     ```ruby
-    bundle
+    bundle install
     ```
 
 #### Available Tasks
@@ -86,6 +88,12 @@ When configuring tasks for production, the timing on both should be optimized de
     ```bash
     bundle ex rake vaccinesignup:read_and_notify
     ```
+
+## [Contributing to @vaccinesignup](.github/CONTRIBUTING.md)
+
+## Cheers!
+
+<a href="https://www.buymeacoffee.com/oblomov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" height="41" width="174" ></a>
 
 ## Copyright
 

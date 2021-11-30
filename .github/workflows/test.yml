@@ -2,9 +2,9 @@
 name: test
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
 jobs:
   test:
     environment: staging

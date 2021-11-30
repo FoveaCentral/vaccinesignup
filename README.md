@@ -1,11 +1,11 @@
 # @vaccinesignup
 
-[![test](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/ivanoblomov/vaccinesignup/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/ivanoblomov/vaccinesignup/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/ivanoblomov/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/ivanoblomov/vaccinesignup?branch=main)
+[![test](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/FoveaCentral/vaccinesignup/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/FoveaCentral/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/FoveaCentral/vaccinesignup?branch=main)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5405/badge)](https://bestpractices.coreinfrastructure.org/projects/5405)
 
-This Twitter bot notifies LA County users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area.
+This Twitter bot notifies users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area. Our current data source only supports LA County.
 
 ## Usage
 

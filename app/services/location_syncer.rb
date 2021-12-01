@@ -7,6 +7,7 @@ require 'net/http'
 # Syncs vaccine Locations with LA County's data set.
 class LocationSyncer < ApplicationService
   LA_URL = 'http://publichealth.lacounty.gov/acd/ncorona2019/js/pod-data.js'
+  private_constant :LA_URL
 
   # Creates a LocationSyncer, setting @locations to the specified array of
   # location attributes. Defaults to LA County's locations.

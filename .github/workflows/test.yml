@@ -9,6 +9,7 @@ jobs:
   test:
     environment: staging
     runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby-version }}
     strategy:
       matrix:
         ruby-version: [2.7]
@@ -20,13 +21,16 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
-    - name: Install dependencies
-      run: bundle install
     - name: Prepare db
       run: bundle exec rake db:prepare RAILS_ENV=test
     - name: Run tests
       run: bundle exec rake
-    - name: Coveralls
+    - name: Send Code Climate coverage
+      uses: aktions/codeclimate-test-reporter@v1
+      with:
+        codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
+        command: after-build --coverage-input-type lcov
+    - name: Send Coveralls coverage
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}

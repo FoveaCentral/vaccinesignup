@@ -4,11 +4,27 @@
 
 # Reads direct messages for zips that users want to follow.
 class DirectMessageReader < ApplicationService
+  # Creates a DirectMessageReader, setting @direct_messages to the specified array of DM attributes. Defaults to
+  # TWITTER_CLIENT.direct_messages_received in reverse order.
+  #
+  # @param dms [Array] array of DM-attribute hashes
+  # @return [DirectMessageReader]
+  # @example
+  #   DirectMessageReader.new
   def initialize(dms = TWITTER_CLIENT.direct_messages_received.reverse)
     super()
     @direct_messages = dms
   end
 
+  # Reads DMs from the array of DM-attribute hashes @direct_messages.
+  #
+  # @return [Hash] results tallying subscribed and stopped zips
+  # @example
+  #   DirectMessageReader.call
+  #     => {
+  #            :stopped => 13,
+  #         :subscribed => 21
+  #     }
   def call
     results = { stopped: 0, subscribed: 0 }
     @direct_messages.each do |dm|

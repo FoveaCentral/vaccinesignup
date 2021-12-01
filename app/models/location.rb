@@ -5,6 +5,7 @@
 # Represents a vaccine location.
 class Location < ApplicationRecord
   USER_FACING_ATTRIBUTES = %w[name addr1 addr2 link].freeze
+  private_constant :USER_FACING_ATTRIBUTES
 
   alias_attribute :xParent, :x_parent
   alias_attribute :NumChildren, :num_children

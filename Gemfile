@@ -20,6 +20,7 @@ group :development, :production do
 end
 
 group :development, :test do
+  gem 'inch', '~> 0.8'
   gem 'pry-awesome_print', '~> 9.6.0'
   gem 'pry-rails',         '~> 0.3.0'
 end

@@ -6,6 +6,9 @@ require 'net/http'
 
 # DM users about new Locations.
 class NotifyBot < ApplicationService
+  # Calls Notifier.call.
+  #
+  # @return [Notifier.call]
   def call
     Notifier.call if DirectMessageReader.call[:subscribed].positive?
   end

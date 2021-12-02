@@ -1,7 +1,7 @@
 # @vaccinesignup
 
 [![test](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/4f55414b773a983912b5/maintainability)](https://codeclimate.com/github/FoveaCentral/vaccinesignup/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9818a986253d2a477bb8/maintainability)](https://codeclimate.com/github/FoveaCentral/vaccinesignup/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/FoveaCentral/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/FoveaCentral/vaccinesignup?branch=main)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5405/badge)](https://bestpractices.coreinfrastructure.org/projects/5405)
 

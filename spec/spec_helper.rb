@@ -6,7 +6,9 @@ require 'bundler'
 require File.expand_path('support/factory_bot', __dir__)
 
 # rails
+# rubocop:disable Style/FetchEnvVar
 ENV['RAILS_ENV'] ||= 'test'
+# rubocop:enable Style/FetchEnvVar
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 

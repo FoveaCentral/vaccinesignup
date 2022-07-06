@@ -39,7 +39,7 @@ namespace :vaccinesignup do
 
     if results[:total]
       if results[:zips].present?
-        puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, which "\
+        puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, which " \
              "affected these zips: #{results[:zips].to_a.to_sentence}."
       else
         puts "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations."

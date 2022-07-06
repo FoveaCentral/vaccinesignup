@@ -71,8 +71,8 @@ class LocationSyncer < ApplicationService
 
   def log_results(results)
     if results[:zips].present?
-      Rails.logger.info "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations, "\
-                        "which affected these zips: #{results[:zips].to_a.to_sentence}."
+      Rails.logger.info "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} " \
+                        "Locations, which affected these zips: #{results[:zips].to_a.to_sentence}."
     else
       Rails.logger.info "Parsed #{results[:total]}, created #{results[:new]}, updated #{results[:updated]} Locations."
     end

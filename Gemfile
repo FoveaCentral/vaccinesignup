@@ -30,7 +30,7 @@ group :test do
   gem 'factory_bot', '~> 6.2'
   gem 'rspec-rails', '~> 5'
   gem 'rubocop', '~> 1.36'
-  gem 'rubocop-rails', '~> 2.15'
+  gem 'rubocop-rails', '~> 2.16'
   gem 'rubocop-rspec', '~> 2.12'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false

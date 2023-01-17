@@ -208,12 +208,15 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
+    rubocop-capybara (2.17.0)
+      rubocop (~> 1.41)
     rubocop-rails (2.17.4)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
-    rubocop-rspec (2.17.1)
+    rubocop-rspec (2.18.0)
       rubocop (~> 1.33)
+      rubocop-capybara
     ruby-progressbar (1.11.0)
     simple_oauth (0.3.1)
     simplecov (0.22.0)
@@ -284,7 +287,7 @@ DEPENDENCIES
   rspec-rails (~> 6)
   rubocop (~> 1.43)
   rubocop-rails (~> 2.17)
-  rubocop-rspec (~> 2.17)
+  rubocop-rspec (~> 2.18)
   simplecov
   simplecov-lcov
   spring (~> 4.1)

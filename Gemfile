@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '>= 2.7'
 
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 6.1'
 gem 'rails', '~> 6.1.4'
 gem 'twitter', '~> 7.0'
 

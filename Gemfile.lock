@@ -67,9 +67,9 @@ GEM
     buftok (0.2.0)
     builder (3.2.4)
     coderay (1.1.3)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.0)
     crass (1.0.6)
-    database_cleaner-active_record (2.0.1)
+    database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
@@ -257,7 +257,7 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
@@ -269,13 +269,13 @@ GEM
     websocket-extensions (0.1.5)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  database_cleaner-active_record (~> 2.0)
+  database_cleaner-active_record (~> 2.1)
   factory_bot (~> 6.2)
   inch (~> 0.8)
   listen (~> 3.8)

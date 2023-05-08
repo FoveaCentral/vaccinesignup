@@ -31,7 +31,7 @@ group :test do
   gem 'rspec-rails', '~> 6'
   gem 'rubocop', '~> 1.50'
   gem 'rubocop-rails', '~> 2.19'
-  gem 'rubocop-rspec', '~> 2.20'
+  gem 'rubocop-rspec', '~> 2.22'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
   gem 'sqlite3', '~> 1.6'

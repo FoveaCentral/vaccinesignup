@@ -5,7 +5,7 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 describe SyncAndNotifyBot do
   describe '#call' do
-    before {  allow(LocationSyncer).to receive(:call).and_return results }
+    before { allow(LocationSyncer).to receive(:call).and_return results }
 
     after { SyncAndNotifyBot.call }
 

@@ -80,7 +80,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubi (1.12.0)
-    factory_bot (6.2.1)
+    factory_bot (6.3.0)
       activesupport (>= 5.0.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -122,7 +122,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.4)
-    minitest (5.18.1)
+    minitest (5.19.0)
     multipart-post (2.1.1)
     naught (1.1.0)
     nio4r (2.5.9)
@@ -278,14 +278,14 @@ GEM
     websocket-extensions (0.1.5)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.6.8)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   database_cleaner-active_record (~> 2.1)
-  factory_bot (~> 6.2)
+  factory_bot (~> 6.3)
   inch (~> 0.8)
   listen (~> 3.8)
   pg (~> 1.5.4)

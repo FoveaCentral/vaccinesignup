@@ -222,7 +222,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
-    rubocop-rspec (2.23.2)
+    rubocop-rspec (2.24.0)
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -296,7 +296,7 @@ DEPENDENCIES
   rspec-rails (~> 6)
   rubocop (~> 1.56)
   rubocop-rails (~> 2.20)
-  rubocop-rspec (~> 2.23)
+  rubocop-rspec (~> 2.24)
   simplecov
   simplecov-lcov
   spring (~> 4.1)

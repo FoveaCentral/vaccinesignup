@@ -79,7 +79,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubi (1.12.0)
-    factory_bot (6.3.0)
+    factory_bot (6.4.0)
       activesupport (>= 5.0.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -283,7 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner-active_record (~> 2.1)
-  factory_bot (~> 6.3)
+  factory_bot (~> 6.4)
   inch (~> 0.8)
   listen (~> 3.8)
   pg (~> 1.5.4)

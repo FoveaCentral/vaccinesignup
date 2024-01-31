@@ -35,6 +35,6 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run RuboCop
-      run: bundle exec rubocop
+      run: bundle exec rubocop -A
     - name: Run Inch
       run: bundle exec inch --pedantic

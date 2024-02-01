@@ -9,7 +9,7 @@ USER_FACING_FIELDS = %w[name addr1 addr2 link].freeze
 # rubocop:disable Metrics/BlockLength
 describe Location do
   describe '.find_by_best_key' do
-    subject { Location.find_by_best_key(address1: address1, la_id: la_id) }
+    subject { Location.find_by_best_key(address1:, la_id:) }
 
     let(:address1) { nil }
     let(:la_id) { nil }

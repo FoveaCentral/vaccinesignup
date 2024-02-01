@@ -12,7 +12,7 @@ jobs:
     name: Ruby ${{ matrix.ruby-version }}
     strategy:
       matrix:
-        ruby-version: [3.1]
+        ruby-version: [3.3]
     steps:
     - name: Checkout code
       uses: actions/checkout@v2

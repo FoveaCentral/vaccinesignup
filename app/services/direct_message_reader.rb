@@ -30,7 +30,7 @@ class DirectMessageReader < ApplicationService
     @direct_messages.each do |dm|
       next if ReadDirectMessage.exists?(direct_message_id: dm.id)
 
-      read(direct_message: dm, results: results)
+      read(direct_message: dm, results:)
     end
     results
   end

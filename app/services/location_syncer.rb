@@ -45,7 +45,7 @@ class LocationSyncer < ApplicationService
 
       if (location = Location.find_or_init(attr)).user_facing_attributes_changed?
         results[:zips] << location.zip
-        log_location_change(location: location, results: results)
+        log_location_change(location:, results:)
       end
       location.save
     end.size

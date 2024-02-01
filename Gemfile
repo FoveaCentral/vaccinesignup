@@ -7,7 +7,7 @@ ruby '>= 3.0'
 
 gem 'puma', '~> 6.4'
 gem 'rails', '~> 6.1.4'
-gem 'twitter', '~> 7.0'
+gem 'twitter', '~> 8.0'
 
 group :development do
   gem 'listen', '~> 3.8'

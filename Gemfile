@@ -10,7 +10,7 @@ gem 'rails', '~> 6.1.4'
 gem 'twitter', '~> 8.0'
 
 group :development do
-  gem 'listen', '~> 3.8'
+  gem 'listen', '~> 3.9'
   gem 'spring', '~> 4.1'
   gem 'spring-commands-rspec', '~> 1.0'
 end

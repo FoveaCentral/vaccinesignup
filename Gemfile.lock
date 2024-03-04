@@ -131,7 +131,7 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    pg (1.5.5)
+    pg (1.5.6)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -282,7 +282,7 @@ DEPENDENCIES
   factory_bot (~> 6.4)
   inch (~> 0.8)
   listen (~> 3.9)
-  pg (~> 1.5.5)
+  pg (~> 1.5.6)
   pry-awesome_print (~> 9.6.0)
   pry-rails (~> 0.3.0)
   puma (~> 6.4)

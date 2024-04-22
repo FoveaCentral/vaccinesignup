@@ -24,7 +24,7 @@ jobs:
     - name: Prepare db
       run: bundle exec rake db:prepare RAILS_ENV=test
     - name: Run tests
-      run: bundle exec rake
+      run: bundle exec rspec
     - name: Send Code Climate coverage
       uses: aktions/codeclimate-test-reporter@v1
       with:

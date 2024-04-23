@@ -91,10 +91,6 @@ When configuring tasks for production, the timing on both should be optimized de
 
 ## [Contributing to @vaccinesignup](.github/CONTRIBUTING.md)
 
-## Cheers!
-
-<a href="https://www.buymeacoffee.com/oblomov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" height="41" width="174" ></a>
-
 ## Copyright
 
-Copyright © 2021-2022 Roderick Monje. See [LICENSE](LICENSE) for further details.
+Copyright © 2021-2024 Roderick Monje. See [LICENSE](LICENSE) for further details.

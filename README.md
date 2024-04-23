@@ -93,4 +93,4 @@ When configuring tasks for production, the timing on both should be optimized de
 
 ## Copyright
 
-Copyright © 2021-2022 Roderick Monje. See [LICENSE](LICENSE) for further details.
+Copyright © 2021-2024 Roderick Monje. See [LICENSE](LICENSE) for further details.

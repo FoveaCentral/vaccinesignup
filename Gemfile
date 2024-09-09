@@ -17,7 +17,7 @@ group :development do
 end
 
 group :development, :production do
-  gem 'pg', '~> 1.5.7'
+  gem 'pg', '~> 1.5.8'
 end
 
 group :development, :test do

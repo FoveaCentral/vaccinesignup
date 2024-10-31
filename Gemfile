@@ -35,7 +35,7 @@ group :test do
   gem 'rubocop-rspec', '~> 3.2'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
-  gem 'sqlite3', '~> 2.1'
+  gem 'sqlite3', '~> 2.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

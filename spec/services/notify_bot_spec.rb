@@ -14,7 +14,9 @@ describe NotifyBot do
     describe Notifier do
       subject { described_class }
 
+      # rubocop:disable RSpec/SubjectStub
       it { is_expected.to receive(:call) }
+      # rubocop:enable RSpec/SubjectStub
     end
   end
 end

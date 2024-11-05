@@ -41,6 +41,7 @@ describe Location do
   describe '#user_facing_attributes_changed?' do
     context 'when user-facing attributes change' do
       USER_FACING_FIELDS.each do |attr|
+        # rubocop:disable RSpec/NestedGroups
         context "when ##{attr} changes" do
           subject { location.user_facing_attributes_changed? }
 
@@ -48,11 +49,13 @@ describe Location do
 
           it { is_expected.to be true }
         end
+        # rubocop:enable RSpec/NestedGroups
       end
     end
 
     context "when user-facing don't attributes change" do
       (described_class.column_names - USER_FACING_FIELDS).each do |attr|
+        # rubocop:disable RSpec/NestedGroups
         context "when ##{attr} changes" do
           subject { location.user_facing_attributes_changed? }
 
@@ -60,6 +63,7 @@ describe Location do
 
           it { is_expected.to be false }
         end
+        # rubocop:enable RSpec/NestedGroups
       end
     end
   end

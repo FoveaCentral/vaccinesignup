@@ -22,6 +22,7 @@ describe LocationSyncer do
     context 'when no Locations exist' do
       it { is_expected.to include({ total: 1, new: 1, updated: 0 }) }
 
+      # rubocop:disable RSpec/NestedGroups, RSpec/ContextWording
       context 'creates Location' do
         before { described_class.call(locations) }
 
@@ -33,6 +34,7 @@ describe LocationSyncer do
           end
         end
       end
+      # rubocop:enable RSpec/NestedGroups, RSpec/ContextWording
     end
 
     context 'when a matching Location exists' do
@@ -40,6 +42,7 @@ describe LocationSyncer do
 
       it { is_expected.to include({ total: 1, new: 0, updated: 1 }) }
 
+      # rubocop:disable RSpec/NestedGroups, RSpec/ContextWording
       context 'updates Location' do
         before { described_class.call(locations) }
 
@@ -51,6 +54,7 @@ describe LocationSyncer do
           end
         end
       end
+      # rubocop:enable RSpec/NestedGroups, RSpec/ContextWording
     end
   end
 end

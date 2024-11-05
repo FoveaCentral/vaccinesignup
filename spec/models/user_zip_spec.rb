@@ -11,11 +11,13 @@ describe UserZip do
     context 'when following another zip' do
       let(:user_zip) { described_class.new(user_id: 1, zip: '90210') }
 
+      # rubocop:disable RSpec/NestedGroups
       describe '#save' do
         subject { user_zip.save }
 
         it { is_expected.to be true }
       end
+      # rubocop:enable RSpec/NestedGroups
     end
   end
 end

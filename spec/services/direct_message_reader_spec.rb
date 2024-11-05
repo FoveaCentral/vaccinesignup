@@ -17,6 +17,7 @@ describe DirectMessageReader do
 
       it { is_expected.to eq({ stopped: 0, subscribed: 1 }) }
 
+      # rubocop:disable RSpec/NestedGroups
       context 'when a user unsubscribes' do
         let(:messages) { [subscribe_message, unsubscribe_message] }
         let(:unsubscribe_message) do
@@ -27,6 +28,7 @@ describe DirectMessageReader do
 
         it { is_expected.to eq({ stopped: 1, subscribed: 1 }) }
       end
+      # rubocop:enable RSpec/NestedGroups
     end
   end
 end

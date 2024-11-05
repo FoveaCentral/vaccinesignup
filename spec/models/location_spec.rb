@@ -24,13 +24,17 @@ describe Location do
     context 'with present :la_id' do
       let(:la_id) { '5462' }
 
-      it { is_expected.to eq location }
+      # rubocop:disable RSpec/ImplicitExpect
+      it { should eq location }
+      # rubocop:enable RSpec/ImplicitExpect
     end
 
     context 'with present :address1' do
       let(:address1) { '300 North Canon Drive' }
 
-      it { is_expected.to eq location }
+      # rubocop:disable RSpec/ImplicitExpect
+      it { should eq location }
+      # rubocop:enable RSpec/ImplicitExpect
     end
   end
 

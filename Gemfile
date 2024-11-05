@@ -31,8 +31,10 @@ group :test do
   gem 'factory_bot'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
   gem 'sqlite3'

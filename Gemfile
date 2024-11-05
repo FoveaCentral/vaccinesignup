@@ -3,39 +3,41 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '>= 3.0'
+ruby '>= 3.1'
 
-gem 'puma', '~> 6.4'
-gem 'rails', '~> 7.2.2'
-gem 'sprockets-rails', '~> 3.5'
-gem 'twitter', '~> 8.1'
+gem 'puma'
+gem 'rails'
+gem 'sprockets-rails'
+gem 'twitter'
 
 group :development do
-  gem 'listen', '~> 3.9'
-  gem 'spring', '~> 4.2'
-  gem 'spring-commands-rspec', '~> 1.0'
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :development, :production do
-  gem 'pg', '~> 1.5.9'
+  gem 'pg'
 end
 
 group :development, :test do
-  gem 'inch', '~> 0.8'
-  gem 'pry-awesome_print', '~> 9.6.0'
-  gem 'pry-rails',         '~> 0.3.11'
+  gem 'inch'
+  gem 'pry-awesome_print'
+  gem 'pry-rails'
 end
 
 group :test do
-  gem 'database_cleaner-active_record', '~> 2.2'
-  gem 'factory_bot', '~> 6.5'
-  gem 'rspec-rails', '~> 7'
-  gem 'rubocop', '~> 1.68'
-  gem 'rubocop-rails', '~> 2.27'
-  gem 'rubocop-rspec', '~> 3.2'
+  gem 'database_cleaner-active_record'
+  gem 'factory_bot'
+  gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
-  gem 'sqlite3', '~> 2.2'
+  gem 'sqlite3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

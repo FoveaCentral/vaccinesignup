@@ -17,7 +17,7 @@ namespace :vaccinesignup do
   task delete_real_users: :environment do
     raise "Can't run this task on production!" unless Rails.env.development?
 
-    puts "Deleted #{UserZip.where('user_id != ?', TEST_USER_ID).delete_all} non-test users."
+    puts "Deleted #{UserZip.where.not(user_id: TEST_USER_ID).delete_all} non-test users."
   end
 
   desc 'Read DMs and, if there are subscribed zip codes, notify users.'

@@ -2,5 +2,7 @@
 
 # Logs which users are subscribed to which zip codes.
 class UserZip < ApplicationRecord
-  validates_uniqueness_of :user_id, scope: :zip
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :user_id, uniqueness: { scope: :zip }
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
 end

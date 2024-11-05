@@ -38,7 +38,7 @@ describe LocationSyncer do
     end
 
     context 'when a matching Location exists' do
-      before { FactoryBot.create(:location, :with_bad_name) }
+      before { create(:location, :with_bad_name) }
 
       it { is_expected.to include({ total: 1, new: 0, updated: 1 }) }
 

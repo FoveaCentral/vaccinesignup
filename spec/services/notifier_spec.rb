@@ -13,7 +13,7 @@ describe Notifier do
       location
     end
 
-    let(:location) { FactoryBot.create(:location) }
+    let(:location) { create(:location) }
 
     context 'when a user subscribes to a matching Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210')] }
@@ -47,7 +47,7 @@ describe Notifier do
       end
 
       context 'when a user subscribes to a second matching Location in another zip code' do
-        before { FactoryBot.create(:location, '90044') }
+        before { create(:location, '90044') }
 
         let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210'), UserZip.new(user_id: 1, zip: '90044')] }
 

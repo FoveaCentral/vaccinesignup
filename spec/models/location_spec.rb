@@ -13,7 +13,7 @@ describe Location do
 
     let(:address1) { nil }
     let(:la_id) { nil }
-    let(:location) { FactoryBot.create(:location) }
+    let(:location) { create(:location) }
 
     context 'with nil :address1 and :la_id' do
       before { location }

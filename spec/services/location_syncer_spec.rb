@@ -17,36 +17,37 @@ describe LocationSyncer do
   let(:locations) { JSON.parse(File.read('./spec/fixtures/locations.json')) }
 
   describe '#call' do
-    subject { LocationSyncer.call(locations) }
+    subject { described_class.call(locations) }
 
     context 'when no Locations exist' do
-      it { should include({ total: 1, new: 1, updated: 0 }) }
+      it { is_expected.to include({ total: 1, new: 1, updated: 0 }) }
 
       context 'creates Location' do
-        before { LocationSyncer.call(locations) }
+        before { described_class.call(locations) }
 
         LOCATION_ATTRIBUTES.each do |key, value|
           describe "Location##{key}" do
             subject { location.send(key) }
 
-            it { should eq value }
+            it { is_expected.to eq value }
           end
         end
       end
     end
+
     context 'when a matching Location exists' do
       before { FactoryBot.create(:location, :with_bad_name) }
 
-      it { should include({ total: 1, new: 0, updated: 1 }) }
+      it { is_expected.to include({ total: 1, new: 0, updated: 1 }) }
 
       context 'updates Location' do
-        before { LocationSyncer.call(locations) }
+        before { described_class.call(locations) }
 
         LOCATION_ATTRIBUTES.each do |key, value|
           describe "Location##{key}" do
             subject { location.send(key) }
 
-            it { should eq value }
+            it { is_expected.to eq value }
           end
         end
       end

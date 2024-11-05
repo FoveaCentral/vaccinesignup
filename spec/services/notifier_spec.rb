@@ -6,7 +6,7 @@ require "#{File.dirname(__FILE__)}/../spec_helper"
 # rubocop:disable Metrics/BlockLength
 describe Notifier do
   describe '#call' do
-    subject { Notifier.call(user_zips) }
+    subject { described_class.call(user_zips) }
 
     before do
       allow(TWITTER_CLIENT).to receive(:create_direct_message)
@@ -18,21 +18,22 @@ describe Notifier do
     context 'when a user subscribes to a matching Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90210')] }
 
-      it { should include({ locations: 1, users: 1 }) }
+      it { is_expected.to include({ locations: 1, users: 1 }) }
 
       describe 'Rails.logger' do
         context 'when Twitter errors out' do
           before { allow(TWITTER_CLIENT).to receive(:create_direct_message).and_raise(Twitter::Error) }
 
-          after { Notifier.call(user_zips) }
+          after { described_class.call(user_zips) }
 
           it { expect(Rails.logger).to receive(:error).once }
         end
       end
+
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }
 
-        after { Notifier.call(user_zips) }
+        after { described_class.call(user_zips) }
 
         it { is_expected.to receive(:create_direct_message) }
       end
@@ -45,21 +46,22 @@ describe Notifier do
         describe 'TWITTER_CLIENT' do
           subject { TWITTER_CLIENT }
 
-          after { Notifier.call(user_zips) }
+          after { described_class.call(user_zips) }
 
           it { is_expected.to receive(:create_direct_message).twice }
         end
       end
     end
+
     context 'when a user subscribes to a non-existing Location' do
       let(:user_zips) { [UserZip.new(user_id: 1, zip: '90044')] }
 
-      it { should include({ locations: 0, users: 0 }) }
+      it { is_expected.to include({ locations: 0, users: 0 }) }
 
       describe 'TWITTER_CLIENT' do
         subject { TWITTER_CLIENT }
 
-        after { Notifier.call(user_zips) }
+        after { described_class.call(user_zips) }
 
         it { is_expected.not_to receive(:create_direct_message) }
       end

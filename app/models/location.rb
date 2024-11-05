@@ -25,9 +25,9 @@ class Location < ApplicationRecord
   #   Location.find_by_best_key(la_id: '1', address1: '1261 W 79th Street')
   def self.find_by_best_key(la_id:, address1:)
     if la_id.present?
-      Location.where('la_id = ?', la_id.to_s)
+      Location.where(la_id: la_id.to_s)
     elsif address1.present?
-      Location.where('addr1 = ?', address1.to_s)
+      Location.where(addr1: address1.to_s)
     else
       Location.none
     end.first
@@ -57,7 +57,7 @@ class Location < ApplicationRecord
 
   # Returns true if any of the user-facing attributes have changed.
   def user_facing_attributes_changed?
-    changed? && (changes.keys & USER_FACING_ATTRIBUTES).present?
+    changed? && changes.keys.intersect?(USER_FACING_ATTRIBUTES)
   end
 
   # Returns the Location's zip code.

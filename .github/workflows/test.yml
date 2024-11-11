@@ -14,18 +14,18 @@ jobs:
       matrix:
         ruby-version: [3.3]
     steps:
-    - uses: actions/checkout@v4
-    - uses: ruby/setup-ruby@v1
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
     - run: bundle exec rake db:prepare RAILS_ENV=test
     - run: bundle exec rspec
-    - uses: aktions/codeclimate-test-reporter@v1
+    - uses: aktions/codeclimate-test-reporter@7634aa9ac7883182f583f15ff7b6ff519939dd0a
       with:
         codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
         command: after-build --coverage-input-type lcov
-    - uses: coverallsapp/github-action@master
+    - uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - run: bundle exec rubocop

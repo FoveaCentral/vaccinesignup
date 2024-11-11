@@ -1,4 +1,4 @@
-name: analysis
+name: analyze
 on:
   push:
     paths-ignore:

@@ -3,7 +3,7 @@
 [![test](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml/badge.svg)](https://github.com/FoveaCentral/vaccinesignup/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9818a986253d2a477bb8/maintainability)](https://codeclimate.com/github/FoveaCentral/vaccinesignup/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/FoveaCentral/vaccinesignup/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/FoveaCentral/vaccinesignup?branch=main)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/5405/badge)](https://www.bestpractices.dev/en/projects/5405)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/5405/badge)](https://www.bestpractices.dev/projects/5405)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/FoveaCentral/vaccinesignup/badge)](https://scorecard.dev/viewer/?uri=github.com/FoveaCentral/vaccinesignup)
 
 This Twitter bot notifies users who DM their zip codes to [@vaccinesignup](https://twitter.com/vaccinesignup/) about available vaccine-appointment Locations in their area. Our current data source only supports LA County.

@@ -1,7 +1,9 @@
 name: Test
 on:
   push:
-permissions: read-all
+permissions:
+  contents: read
+  id-token: write
 jobs:
   test:
     environment: staging
@@ -11,6 +13,11 @@ jobs:
       matrix:
         ruby-version: [3.3]
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      with:
+        egress-policy: audit
+
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
     - uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc
       with:
@@ -20,10 +27,10 @@ jobs:
     - run: bundle exec rspec
     - run: bundle exec rubocop
     - run: bundle exec inch --pedantic
-    - uses: aktions/codeclimate-test-reporter@7634aa9ac7883182f583f15ff7b6ff519939dd0a
+    - uses: qltysh/qlty-action/coverage@a19242102d17e497f437d7466aa01b528537e899 # v2.2.0
       with:
-        codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
-        command: after-build --coverage-input-type lcov
-    - uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8
+        oidc: true
+        files: coverage/lcov.info
+    - uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -13,6 +13,11 @@ jobs:
       matrix:
         ruby-version: [3.3]
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      with:
+        egress-policy: audit
+
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
     - uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc
       with:
@@ -22,7 +27,7 @@ jobs:
     - run: bundle exec rspec
     - run: bundle exec rubocop
     - run: bundle exec inch --pedantic
-    - uses: qltysh/qlty-action/coverage@v1
+    - uses: qltysh/qlty-action/coverage@a2277a908db90c4c868832fb9204521fb940fdb4 # v1
       with:
         oidc: true
         files: coverage/lcov.info

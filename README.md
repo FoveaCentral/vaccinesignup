@@ -91,6 +91,4 @@ When configuring tasks for production, the timing on both should be optimized de
 
 ## [Contributing to @vaccinesignup](.github/CONTRIBUTING.md)
 
-## Copyright
-
-Copyright © 2021-2024 Roderick Monje. See [LICENSE](LICENSE) for further details.
+Copyright © 2021-2025 Roderick Monje. See [LICENSE](LICENSE) for further details.
